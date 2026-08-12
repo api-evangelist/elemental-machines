@@ -1,0 +1,67 @@
+generated: '2026-08-12'
+method: generated
+source: openapi/elemental-machines-api-openapi.yml
+summary: >-
+  Packaged Agent Skills for the Elemental Machines LabOps API, generated from the provider's own
+  contract. Every operationId referenced in every skill is verified present in
+  openapi/elemental-machines-api-openapi.yml (converted verbatim from
+  https://api.elementalmachines.io/docs/api-docs.json). No provider-published skills or AGENTS.md
+  exist to save instead — neither elementalmachines.com nor api.elementalmachines.io serves one.
+  The skills are grounded in operationIds and parameter names only; no response field names are
+  asserted, because the provider publishes no response schemas.
+api: Elemental Machines API
+base_url: https://api.elementalmachines.io
+surface_note: >-
+  The API is read-only apart from the OAuth token exchange, so every skill is an investigation or
+  reporting flow. None of them can change platform state, and each says so explicitly.
+skills:
+- name: elemental-machines-cold-storage-excursion-review
+  file: skills/elemental-machines-cold-storage-excursion-review.md
+  summary: >-
+    Investigate a temperature excursion on a monitored asset — alert history, raw sample window
+    around each alert, server-computed baseline statistics, and the rule that fired.
+  operations:
+  - oauthToken
+  - machinesIndex
+  - machinesShow
+  - alertLogsIndex
+  - machineSamplesIndex
+  - machineSampleStatsIndex
+  - alertRulesIndex
+  - userActivitiesIndex
+  - statusCheck
+- name: elemental-machines-equipment-utilization-report
+  file: skills/elemental-machines-equipment-utilization-report.md
+  summary: >-
+    Build an equipment utilization report for a customer group — aggregated and hourly utilization
+    against a working-hours calendar, sliced by location and equipment category, for
+    relocate/retire/purchase decisions.
+  operations:
+  - oauthToken
+  - customerGroupsMy
+  - customerGroupsIndex
+  - machinesIndex
+  - machinesUsageAggregated
+  - machinesUsageHourly
+  - machinesUsageStatus
+shared_rules:
+- Authenticate with POST /oauth/token (password grant) and carry the token as an access_token QUERY
+  PARAMETER; there is no Authorization-header option, so never persist a request URL.
+- Resolve UUIDs from machinesIndex and customerGroupsMy before any nested read. 403 means the
+  resource belongs to another customer group; 404 means it does not exist.
+- page and per_page are REQUIRED on machinesUsageAggregated, machinesUsageHourly,
+  machinesUsageStatus and releaseNotesIndex.
+- Time-series operations window on from/to EPOCH INTEGERS; usage operations window on start_date /
+  end_date STRINGS. They are not interchangeable.
+- Prefer machineSampleStatsIndex over machineSamplesIndex for aggregates — the server computes
+  min/max/mean/median.
+- Treat 401 as the token-refresh trigger; lifetime is not published.
+- No rate limit, no 429 and no Retry-After are documented. Pace requests conservatively.
+- Use If-None-Match; responses carry a weak ETag with must-revalidate.
+- Log the undocumented but always-present x-request-id response header.
+provider_published_skills: none
+provider_published_agents_md: none
+cross_links:
+  llms: llms/elemental-machines-llms.txt
+  conventions: conventions/elemental-machines-conventions.yml
+  errors: errors/elemental-machines-problem-types.yml

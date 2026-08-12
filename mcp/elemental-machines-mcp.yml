@@ -1,0 +1,80 @@
+generated: '2026-08-12'
+method: probed
+source: https://elementalmachines.com/.well-known/oauth-protected-resource
+status: live
+summary: >-
+  Elemental Machines serves a remote Model Context Protocol server from its WordPress marketing host
+  via the WordPress MCP Adapter. It was discovered from /.well-known/oauth-protected-resource, not
+  from any documentation — the company does not mention MCP anywhere in its public marketing or in
+  the LabOps API console. IMPORTANT SCOPE NOTE: this is a WEBSITE/CONTENT MCP surface bolted onto
+  the WordPress install. It is NOT an agent interface to the LabOps platform data
+  (machines, samples, utilization, alerts) exposed by api.elementalmachines.io.
+servers:
+- name: mcp-oauth-server
+  url: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+  transport: streamable-http
+  methods_allowed: [POST, GET, DELETE]
+  auth: oauth2
+  auth_gated: true
+  probe:
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    accept: application/json, text/event-stream
+    http_status: 401
+    body_returned: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    www_authenticate: >-
+      Bearer realm="https://elementalmachines.com",
+      resource_metadata="https://elementalmachines.com/.well-known/oauth-protected-resource"
+- name: mcp-adapter-default-server
+  url: https://elementalmachines.com/wp-json/mcp/mcp-adapter-default-server
+  transport: streamable-http
+  methods_allowed: [POST, GET, DELETE]
+  auth: wordpress-session-or-application-password
+  auth_gated: true
+  probe:
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body_returned: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+discovery:
+  route_index:
+    url: https://elementalmachines.com/wp-json/mcp
+    http_status: 200
+    note: WordPress REST namespace listing that enumerates both MCP routes.
+  protected_resource:
+    url: https://elementalmachines.com/.well-known/oauth-protected-resource
+    http_status: 200
+    resource: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+    authorization_servers: [https://elementalmachines.com]
+    bearer_methods_supported: [header]
+    scopes_supported: [mcp]
+  authorization_server:
+    url: https://elementalmachines.com/.well-known/oauth-authorization-server
+    http_status: 200
+    issuer: https://elementalmachines.com
+    authorization_endpoint: https://elementalmachines.com/oauth/authorize
+    token_endpoint: https://elementalmachines.com/oauth/token
+    revocation_endpoint: https://elementalmachines.com/oauth/revoke
+    grant_types_supported: [authorization_code, refresh_token]
+    code_challenge_methods_supported: [S256]
+    token_endpoint_auth_methods_supported: [none]
+    client_id_metadata_document_supported: true
+tools:
+  known: []
+  count: null
+  note: >-
+    The live tool list is auth-gated (HTTP 401 on tools/list against both endpoints) and the
+    provider publishes no llms.txt, no MCP documentation and no tool reference, so there is no
+    unauthenticated source for the tool names or their inputSchemas. Nothing is listed here rather
+    than guessing at the WordPress MCP Adapter's defaults. Real schemas require authenticated
+    introspection with an OAuth token issued by https://elementalmachines.com/oauth/authorize.
+oauth:
+  dynamic_client_registration: false
+  client_id_metadata_document: true
+  pkce_required: true
+  public_clients: true
+  scopes: [mcp]
+cross_links:
+  well_known: well-known/elemental-machines-well-known.yml
+  crosswalk: mcp/elemental-machines-tool-crosswalk.yml
+  scopes: scopes/elemental-machines-scopes.yml

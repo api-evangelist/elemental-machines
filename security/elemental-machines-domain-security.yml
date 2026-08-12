@@ -1,0 +1,27 @@
+generated: '2026-08-12'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: elementalmachines.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 26 22:27:21 2026 GMT
+  hsts: false
+- host: api.elementalmachines.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 18 07:57:36 2026 GMT
+  hsts: false
+domains:
+- domain: elementalmachines.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: elementalmachines.io
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

@@ -1,0 +1,89 @@
+generated: '2026-08-12'
+method: probed
+source: live GET probes of /.well-known/* on every host named in apis.yml and openapi/ servers[]
+summary: >-
+  Two hosts were probed: elementalmachines.com (the WordPress marketing/content host) and
+  api.elementalmachines.io (the LabOps REST API host). The API host serves NOTHING under
+  /.well-known/ — every path returns the Rails 404 page. The marketing host DOES serve two real
+  RFC 8414 / RFC 9728 documents, emitted by the WordPress MCP Adapter plugin: an OAuth
+  authorization-server metadata document and an OAuth protected-resource metadata document that
+  names a remote MCP endpoint. No security.txt, no OpenID configuration, no api-catalog, no
+  ai-plugin.json, and no A2A agent card exists on either host.
+hosts:
+- host: api.elementalmachines.io
+  probes:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: elementalmachines.com
+  probes:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    note: Returns the site's HTML 404 page, not a document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json; charset=UTF-8
+    file: well-known/elemental-machines-oauth-authorization-server.json
+    note: >-
+      Real RFC 8414 authorization-server metadata. issuer https://elementalmachines.com,
+      authorization_code + refresh_token grants, PKCE S256, single scope "mcp",
+      token_endpoint_auth_methods_supported ["none"] (public clients),
+      client_id_metadata_document_supported true.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json; charset=UTF-8
+    file: well-known/elemental-machines-oauth-protected-resource.json
+    note: >-
+      Real RFC 9728 protected-resource metadata naming
+      https://elementalmachines.com/wp-json/mcp/mcp-oauth-server as the protected MCP resource.
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+findings:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: true
+  oauth_protected_resource: true
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+pointer_emitted: true
+pointer_reason: >-
+  Two paths returned HTTP 200 carrying real, parseable JSON metadata documents (not SPA shells),
+  so a WellKnown pointer is warranted. No SecurityTxt pointer is emitted — no security.txt is
+  served on either host.
+cross_links:
+  mcp: mcp/elemental-machines-mcp.yml
+  scopes: scopes/elemental-machines-scopes.yml
+  authentication: authentication/elemental-machines-authentication.yml

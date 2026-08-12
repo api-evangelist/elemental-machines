@@ -1,0 +1,87 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/elemental-machines-api-openapi.yml (responseMessages in the provider's Swagger 1.2 declarations)
+summary: >-
+  Error catalog derived from the status codes the Elemental Machines Swagger 1.2 declarations
+  enumerate. The provider publishes NO error body schema and NO error reference page, so only the
+  code and the provider's own one-line message string are authoritative here; remediation is
+  reasoned from the contract and is marked as such.
+format: undocumented
+rfc9457: false
+content_type_observed: application/json for API responses; text/html for Rails-level 404s
+problem_types:
+- code: 400
+  title: Invalid parameters.
+  provider_string: 'Invalid parameters.'
+  operations: [machinesUsageAggregated, machinesUsageHourly, machinesUsageStatus, releaseNotesIndex]
+  cause_derived: >-
+    Most likely a missing or malformed REQUIRED query parameter. All four operations that can return
+    400 declare page and per_page as required, and the three usage operations also require
+    customer_group_uuid.
+  remediation_derived: >-
+    Send customer_group_uuid, page and per_page on every usage call; send page and per_page on
+    release notes. Check date formats on start_date/end_date/from_date/to_date and integer typing
+    on start_work_hour/end_work_hour.
+  source: provider responseMessages
+- code: 401
+  title: Not Authorized
+  provider_string: 'Not Authorized'
+  operations:
+  - alertLogsIndex
+  - alertRulesIndex
+  - customerGroupsIndex
+  - customerGroupsMy
+  - machineSampleStatsIndex
+  - machineSamplesIndex
+  - machinesIndex
+  - machinesShow
+  - machinesUsageAggregated
+  - machinesUsageHourly
+  - machinesUsageStatus
+  - releaseNotesIndex
+  - userActivitiesIndex
+  - usersIndex
+  - usersMy
+  cause_derived: >-
+    Missing, expired or invalid access_token query parameter. Declared on every operation except
+    the token exchange and the status check.
+  remediation_derived: >-
+    Re-run POST /oauth/token with username, password, client_id and client_secret and retry with
+    the fresh token. Token lifetime is not published, so treat 401 as the refresh trigger.
+  source: provider responseMessages
+- code: 401
+  title: Unauthorized
+  provider_string: 'Unauthorized'
+  operations: [oauthToken]
+  cause_derived: Bad credentials or bad client_id/client_secret pair at the token endpoint.
+  remediation_derived: Verify the client credentials issued by Elemental Machines and the user's dashboard credentials.
+  source: provider responseMessages
+- code: 403
+  title: Forbidden
+  provider_string: 'Forbidden'
+  operations: [alertLogsIndex, machinesShow]
+  cause_derived: >-
+    The token is valid but the authenticated user's customer group does not own the requested
+    machine. This is the tenancy boundary: 403 distinguishes "not yours" from 404 "does not exist".
+  remediation_derived: >-
+    Enumerate machines with GET /api/machines.json (which is scoped to the caller) rather than
+    guessing UUIDs, and confirm the group with GET /api/customer_groups/my.json.
+  source: provider responseMessages
+- code: 404
+  title: Not Found
+  provider_string: 'Not Found'
+  operations: [alertLogsIndex, machineSampleStatsIndex, machineSamplesIndex, machinesUsageAggregated, machinesUsageHourly, machinesUsageStatus, userActivitiesIndex]
+  cause_derived: Unknown machine_uuid or customer_group_uuid.
+  remediation_derived: Resolve UUIDs from machinesIndex and customerGroupsMy before requesting nested resources.
+  source: provider responseMessages
+gaps:
+- No machine-readable error schema is published — no application/problem+json, no error code
+  vocabulary, no per-error identifier a client can branch on beyond the HTTP status.
+- No 429 is declared on any operation, so the documented contract gives a client no way to detect
+  throttling. See rate-limits/elemental-machines-rate-limits.yml.
+- No 5xx responses are declared anywhere in the contract.
+- The distinction between 401 on a stale token and 401 on bad credentials is not carried in a body
+  field, so a client cannot tell "refresh" from "re-enroll" without out-of-band knowledge.
+cross_links:
+  conventions: conventions/elemental-machines-conventions.yml
+  authentication: authentication/elemental-machines-authentication.yml

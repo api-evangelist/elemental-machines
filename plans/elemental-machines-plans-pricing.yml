@@ -1,0 +1,49 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://elementalmachines.com/wp-sitemap.xml + https://elementalmachines.com/page-sitemap.xml +
+  https://elementalmachines.com/pricing/ + https://elementalmachines.com/request-a-trial/ +
+  https://elementalmachines.com/contact/
+summary: >-
+  Elemental Machines publishes NO pricing. There is no pricing page, no plan tiers, no per-sensor or
+  per-machine rate, no API quota and no published overage — the entire commercial motion is
+  sales-led. The full page sitemap (76 URLs) was enumerated and contains no pricing, plans, packages
+  or cost page of any kind; /pricing/ returns HTTP 404. The published buying paths are a trial
+  request form and a contact form, plus two ROI calculators that estimate a customer's savings
+  without ever quoting a price.
+plan_count: 0
+pricing_model: contact-sales
+currency: null
+free_tier: false
+trial:
+  available: true
+  self_serve: false
+  url: https://elementalmachines.com/request-a-trial/
+  http_status: 200
+  note: A "request a trial" lead form, not a self-serve signup. No credentials are issued without sales contact.
+plans: []
+api_pricing:
+  metered: unknown
+  included_in_plan: unknown
+  note: >-
+    The API is not sold or metered as a separately priced product anywhere in public material. The
+    marketing describes it as an included capability ("Our ever-expanding suite of APIs and data
+    connectors empowers users to seamlessly integrate our platform data with systems like ELNs,
+    LIMs, QMS, MES, BMS, and more"). Whether API access requires a particular tier, and whether
+    client_id/client_secret issuance costs anything, is not published.
+evidence:
+- url: https://elementalmachines.com/pricing/
+  http_status: 404
+- url: https://elementalmachines.com/page-sitemap.xml
+  http_status: 200
+  note: 76 page URLs enumerated; no pricing/plans/cost page present.
+- url: https://elementalmachines.com/request-a-trial/
+  http_status: 200
+- url: https://elementalmachines.com/contact/
+  http_status: 200
+related_pages:
+- https://elementalmachines.com/asset-optimization-calculator/
+- https://elementalmachines.com/asset-optimization-calculator-abm/
+related_pages_note: >-
+  ROI calculators that model savings from equipment utilization. They produce a customer-side
+  number, not a vendor price, and are not plans.

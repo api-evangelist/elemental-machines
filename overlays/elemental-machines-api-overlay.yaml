@@ -1,0 +1,121 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Elemental Machines API
+  version: 1.0.0
+  x-generated: '2026-08-12'
+  x-method: generated
+  x-source: >-
+    Enhancements applied on top of openapi/elemental-machines-api-openapi.yml, which is API
+    Evangelist's faithful conversion of the provider's Swagger 1.2 contract at
+    https://api.elementalmachines.io/docs/api-docs.json. This overlay records ONLY what API
+    Evangelist added: external documentation links, licensing/contact metadata, tag descriptions
+    written from the provider's own operation summaries, and security/operational notes verified by
+    live probe. It never asserts a provider behaviour that was not observed.
+extends: ../openapi/elemental-machines-api-openapi.yml
+actions:
+- target: $.info
+  description: Add contact, terms and external documentation the provider publishes elsewhere.
+  update:
+    contact:
+      name: Elemental Machines Support
+      email: help@elementalmachines.io
+      url: https://elementalmachines.com/support/
+    termsOfService: https://elementalmachines.com/terms-and-conditions/
+    x-status-page: https://status.elementalmachines.io
+    x-original-contract: https://api.elementalmachines.io/docs/api-docs.json
+    x-original-contract-format: Swagger 1.2
+    x-api-evangelist-note: >-
+      Converted from Swagger 1.2. The provider's declarations carry an empty models block, so no
+      response schemas exist upstream; every response in the converted document is typed as a
+      generic object rather than invented.
+- target: $
+  description: Attach external documentation for the human-facing console.
+  update:
+    externalDocs:
+      description: Elemental Machines API console (Swagger UI, provider-hosted)
+      url: https://api.elementalmachines.io/
+- target: $.tags[?(@.name=='Machines')]
+  description: Describe the Machines tag.
+  update:
+    description: Sensor-connected assets — freezers, incubators, rooms and third-party instruments.
+- target: $.tags[?(@.name=='Machines Samples')]
+  description: Describe the Machines Samples tag.
+  update:
+    description: Raw sensor readings for a machine over a from/to timestamp window.
+- target: $.tags[?(@.name=='Machines Sample Stats')]
+  description: Describe the Machines Sample Stats tag.
+  update:
+    description: Server-computed minimum, maximum, mean and median sensor values over a window.
+- target: $.tags[?(@.name=='Machines Usage')]
+  description: Describe the Machines Usage tag.
+  update:
+    description: >-
+      Equipment utilization rollups per customer group in three shapes — aggregated, hourly and
+      current status — filterable by location tags, equipment category tags and a working-hours
+      calendar.
+- target: $.tags[?(@.name=='Alert Logs')]
+  description: Describe the Alert Logs tag.
+  update:
+    description: Historical alert events raised against a machine.
+- target: $.tags[?(@.name=='Alert Rules')]
+  description: Describe the Alert Rules tag.
+  update:
+    description: Configured alert conditions, filterable by the machine they manage.
+- target: $.tags[?(@.name=='User Activities')]
+  description: Describe the User Activities tag.
+  update:
+    description: >-
+      Audit records of user actions, filterable by customer group, usage type and action type. The
+      machine-readable face of the company's 21 CFR Part 11 audit-trail claim.
+- target: $.tags[?(@.name=='Status')]
+  description: Describe the Status tag.
+  update:
+    description: Unauthenticated subsystem health check.
+- target: $.paths./api/status/check.json.get
+  description: Record the observed response shape — the one endpoint that answers anonymously.
+  update:
+    x-unauthenticated: true
+    x-observed-response-keys:
+    - alerts
+    - sidekiq
+    - gateway_whitelists
+    - smart_context
+    - prediction_statuses
+    - balena_statuses
+    x-observed-at: '2026-08-12'
+    x-observed-http-status: 200
+- target: $.paths./oauth/token.post
+  description: Flag the deprecated grant type.
+  update:
+    x-oauth-grant: password
+    x-oauth-note: >-
+      Resource Owner Password Credentials. Deprecated by OAuth 2.1 and discouraged by RFC 8252; the
+      client must handle the end user's password directly. No refresh-token flow is documented.
+- target: $.components.securitySchemes.access_token
+  description: Record the credential-in-query-string risk.
+  update:
+    x-transport-risk: >-
+      RFC 6750 section 5.3 advises against carrying bearer credentials in a URI query parameter
+      because they leak into server logs, proxy logs, Referer headers and browser history. This API
+      offers no Authorization-header alternative.
+    x-token-lifetime: undocumented
+- target: $
+  description: Record cross-cutting runtime behaviour verified by live probe but absent from the contract.
+  update:
+    x-observed-headers:
+      request_id: x-request-id
+      runtime: x-runtime
+      etag: weak
+      cache_control: max-age=0, private, must-revalidate
+      hsts: absent
+      rate_limit_family: absent
+    x-observed-at: '2026-08-12'
+    x-api-evangelist-artifacts:
+      authentication: authentication/elemental-machines-authentication.yml
+      scopes: scopes/elemental-machines-scopes.yml
+      conventions: conventions/elemental-machines-conventions.yml
+      errors: errors/elemental-machines-problem-types.yml
+      data_model: data-model/elemental-machines-data-model.yml
+      lifecycle: lifecycle/elemental-machines-lifecycle.yml
+      rate_limits: rate-limits/elemental-machines-rate-limits.yml
+      conformance: conformance/elemental-machines-conformance.yml

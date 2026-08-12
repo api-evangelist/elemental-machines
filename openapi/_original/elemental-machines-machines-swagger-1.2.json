@@ -1,0 +1,83 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "machines",
+  "apis": [
+    {
+      "path": "/api/machines.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            }
+          ],
+          "summary": "Get all machines",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            }
+          ],
+          "nickname": "Api::Machines#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/machines/{uuid}.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "uuid",
+              "type": "string",
+              "description": "Machine UUID",
+              "required": true
+            }
+          ],
+          "summary": "Get machine",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            },
+            {
+              "code": 403,
+              "responseModel": null,
+              "message": "Forbidden"
+            }
+          ],
+          "nickname": "Api::Machines#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

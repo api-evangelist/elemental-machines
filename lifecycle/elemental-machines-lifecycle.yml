@@ -1,0 +1,96 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://status.elementalmachines.io/api/v2/summary.json +
+  https://api.elementalmachines.io/docs/api-docs.json +
+  https://api.elementalmachines.io/api/status/check.json
+summary: >-
+  Elemental Machines runs a real Atlassian Statuspage with nine named components and publishes a
+  dated release-notes feed through its own API, but it publishes NO versioning policy, NO deprecation
+  policy, NO Sunset/Deprecation header commitment and NO public SLA. The API declares apiVersion 1.0
+  with no version segment in any URL.
+versioning:
+  scheme: document-version-only
+  current_version: '1.0'
+  source: apiVersion in https://api.elementalmachines.io/docs/api-docs.json
+  in_url: false
+  in_header: false
+  policy_published: false
+  note: >-
+    No /v1/ path segment, no Accept-version header, no documented policy on how a breaking change
+    would be introduced or signalled. A consumer has no version to pin to.
+deprecation:
+  policy_published: false
+  sunset_header: undocumented
+  deprecation_header: undocumented
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No operation in the provider's Swagger 1.2 declarations is marked deprecated, and no deprecation
+    or sunset policy page exists anywhere on elementalmachines.com or the API console. NO
+    Deprecation pointer is emitted in apis.yml — there is no policy to point at.
+status_page:
+  url: https://status.elementalmachines.io
+  platform: Atlassian Statuspage
+  page_id: t2j6fg46f8tr
+  machine_readable:
+    summary: https://status.elementalmachines.io/api/v2/summary.json
+    components: https://status.elementalmachines.io/api/v2/components.json
+    status: https://status.elementalmachines.io/api/v2/status.json
+  feeds:
+    atom: https://status.elementalmachines.io/history.atom
+    rss: https://status.elementalmachines.io/history.rss
+  subscriptions: [email, sms, webhook, atom, rss]
+  components:
+  - Dashboard
+  - API
+  - Alerts
+  - Data Analytics
+  - Data Ingestion Engine
+  - Mobile App
+  - Calendar App
+  - Reports
+  - Usage App/Service
+  observed:
+    probed: '2026-08-12'
+    http_status: 200
+    all_components: operational
+    open_incidents: 0
+    scheduled_maintenances: 0
+    uptime_90d_displayed: 100.0%
+  note: >-
+    The API is a first-class named component on the status page, which is better than most
+    providers of this size manage.
+health_endpoint:
+  url: https://api.elementalmachines.io/api/status/check.json
+  operationId: statusCheck
+  auth_required: false
+  http_status: 200
+  observed_keys: [alerts, sidekiq, gateway_whitelists, smart_context, prediction_statuses, balena_statuses]
+  note: >-
+    Unauthenticated subsystem health. At probe time prediction_statuses reported "KO" while every
+    other subsystem reported "OK" and the Statuspage showed all components operational — the
+    in-band health endpoint is more granular than the public status page.
+release_notes:
+  in_api: true
+  operationId: releaseNotesIndex
+  path: /api/release_notes.json
+  auth_required: true
+  filters: [software, from_date, to_date, page, per_page]
+  see: changelog/elemental-machines-changelog.yml
+sla:
+  published: false
+  note: No public uptime commitment, support-response target or credit schedule is published.
+support:
+  channels:
+  - url: https://elementalmachines.com/support/
+    type: web
+  - url: https://elementalmachines.freshdesk.com/support/solutions
+    type: knowledge-base
+    platform: Freshdesk
+  - email: help@elementalmachines.io
+    type: email
+    source: contact field in https://api.elementalmachines.io/docs/api-docs.json
+cross_links:
+  changelog: changelog/elemental-machines-changelog.yml
+  conventions: conventions/elemental-machines-conventions.yml

@@ -1,0 +1,157 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/elemental-machines-api-openapi.yml (path structure + id-reference parameters)
+summary: >-
+  Entity-relationship graph for the Elemental Machines LabOps API. IMPORTANT CAVEAT ON PROVENANCE:
+  the provider's Swagger 1.2 declarations carry an EMPTY models block on every resource, so there
+  are no response schemas to read attributes from. Everything below is derived from path nesting and
+  from the id-reference parameters (machine_uuid, uuid, customer_group_uuid) — the relationships are
+  solid, but the per-entity attribute lists are deliberately left empty rather than invented.
+identifiers:
+  style: uuid
+  parameters_observed: [uuid, machine_uuid, customer_group_uuid, 'machine_uuids[]']
+  prefixed_ids: false
+  note: No id prefixes are published; identifiers appear to be bare UUIDs.
+entities:
+- name: CustomerGroup
+  description: The tenancy boundary. Machines, users and utilization rollups are all scoped to a group.
+  operations: [customerGroupsIndex, customerGroupsMy]
+  id_field: customer_group_uuid
+  attributes: []
+  attributes_note: No schema published.
+- name: Machine
+  description: >-
+    A sensor-connected asset — a freezer, incubator, room, or third-party instrument. The root
+    entity of the API; every time-series and alert read hangs off a machine.
+  operations: [machinesIndex, machinesShow]
+  id_field: uuid
+  path: /api/machines/{uuid}.json
+  attributes: []
+  attributes_note: No schema published.
+- name: MachineSample
+  description: Raw sensor readings for one machine over a timestamp range.
+  operations: [machineSamplesIndex]
+  path: /api/machines/{machine_uuid}/samples.json
+  window_params: [from, to, order, limit]
+  attributes: []
+- name: MachineSampleStat
+  description: Computed minimum, maximum, mean and median sensor values for one machine over a range.
+  operations: [machineSampleStatsIndex]
+  path: /api/machines/{machine_uuid}/sample_stats.json
+  window_params: [from, to]
+  attributes: []
+  note: A server-side aggregate of MachineSample — the API does the statistics so the client does not have to pull raw series.
+- name: AlertLog
+  description: Historical alert events raised against one machine.
+  operations: [alertLogsIndex]
+  path: /api/machines/{machine_uuid}/alert_logs.json
+  window_params: [from, to, order, limit]
+  attributes: []
+- name: AlertRule
+  description: >-
+    Configured alert conditions. Filterable by managed_machine_uuid, which is the naming that ties a
+    rule to the machine it watches.
+  operations: [alertRulesIndex]
+  path: /api/alert_rules.json
+  filter_params: [managed_machine_uuid]
+  attributes: []
+- name: MachineUsage
+  description: >-
+    Utilization rollups computed per customer group in three shapes — aggregated, hourly, and
+    current status. Filterable by location tags, equipment category tags, explicit machine UUIDs,
+    and a working-hours calendar (time_zone, start_work_hour, end_work_hour, work_days[]).
+  operations: [machinesUsageAggregated, machinesUsageHourly, machinesUsageStatus]
+  path: /api/machines/usage/{shape}.json
+  attributes: []
+- name: User
+  description: A dashboard user within a customer group.
+  operations: [usersIndex, usersMy]
+  attributes: []
+- name: UserActivity
+  description: >-
+    Audit records of what users did, filterable by customer_group_uuid, usage_type and action_type
+    over a from/to window. This is the machine-readable face of the company's 21 CFR Part 11 audit
+    trail claim.
+  operations: [userActivitiesIndex]
+  attributes: []
+- name: ReleaseNote
+  description: Dated platform release notes, filterable by software and a date range.
+  operations: [releaseNotesIndex]
+  filter_params: [software, from_date, to_date]
+  attributes: []
+- name: ServiceStatus
+  description: >-
+    Unauthenticated subsystem health snapshot. This is the ONE entity whose real shape is
+    observable, because the endpoint answers anonymously.
+  operations: [statusCheck]
+  attributes_observed: [alerts, sidekiq, gateway_whitelists, smart_context, prediction_statuses, balena_statuses]
+  attributes_source: live GET https://api.elementalmachines.io/api/status/check.json (HTTP 200)
+relationships:
+- from: CustomerGroup
+  to: Machine
+  type: has_many
+  via: customer_group_uuid
+  evidence: Utilization operations require customer_group_uuid to scope machines; machinesIndex is scoped to the caller's group.
+- from: CustomerGroup
+  to: User
+  type: has_many
+  via: customer_group_uuid
+  evidence: usersIndex returns users for the caller's customer(s); customerGroupsMy resolves the caller's group.
+- from: CustomerGroup
+  to: UserActivity
+  type: has_many
+  via: customer_group_uuid
+  evidence: userActivitiesIndex accepts an optional customer_group_uuid filter.
+- from: CustomerGroup
+  to: MachineUsage
+  type: has_many
+  via: customer_group_uuid
+  evidence: customer_group_uuid is a REQUIRED parameter on all three usage operations.
+- from: Machine
+  to: MachineSample
+  type: has_many
+  via: machine_uuid
+  evidence: Path nesting /api/machines/{machine_uuid}/samples.json.
+- from: Machine
+  to: MachineSampleStat
+  type: has_many
+  via: machine_uuid
+  evidence: Path nesting /api/machines/{machine_uuid}/sample_stats.json.
+- from: Machine
+  to: AlertLog
+  type: has_many
+  via: machine_uuid
+  evidence: Path nesting /api/machines/{machine_uuid}/alert_logs.json.
+- from: AlertRule
+  to: Machine
+  type: belongs_to
+  via: managed_machine_uuid
+  evidence: alertRulesIndex accepts managed_machine_uuid as a filter.
+- from: User
+  to: UserActivity
+  type: has_many
+  via: implied
+  evidence: >-
+    userActivitiesIndex has no user_uuid parameter, so the linkage is presumed to live in the
+    response body. Marked implied rather than asserted, because no response schema is published.
+- from: MachineUsage
+  to: Machine
+  type: has_many
+  via: 'machine_uuids[]'
+  evidence: The usage operations accept machine_uuids[] to restrict the rollup to named machines.
+tagging_dimensions:
+- name: location_tags
+  parameter: 'location_tags[]'
+  note: Free-text location labels (the contract's own example is "Lab 24").
+- name: equipment_category_tags
+  parameter: 'equipment_category_tags[]'
+  note: Equipment category labels used to slice utilization.
+gaps:
+- No response schemas anywhere — the models block is empty in all twelve of the provider's Swagger
+  1.2 declarations, so no field names, types, units or enumerations are published for any entity.
+- Sensor measurement types (temperature, humidity, CO2, differential pressure, door state) are
+  central to the product but appear nowhere in the contract.
+- No write operations, so no create/update payload shapes exist to model.
+cross_links:
+  openapi: openapi/elemental-machines-api-openapi.yml
+  conventions: conventions/elemental-machines-conventions.yml

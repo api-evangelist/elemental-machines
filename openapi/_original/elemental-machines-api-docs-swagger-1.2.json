@@ -1,0 +1,61 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.elementalmachines.io",
+  "apis": [
+    {
+      "path": "/docs/api/oauth.{format}",
+      "description": "Authentication"
+    },
+    {
+      "path": "/docs/api/customer_groups.{format}",
+      "description": "Groups"
+    },
+    {
+      "path": "/docs/api/alert_logs.{format}",
+      "description": "Alert Logs"
+    },
+    {
+      "path": "/docs/api/machine_samples.{format}",
+      "description": "Machines Samples"
+    },
+    {
+      "path": "/docs/api/machine_sample_stats.{format}",
+      "description": "Machines Sample Stats"
+    },
+    {
+      "path": "/docs/api/machines.{format}",
+      "description": "Machines"
+    },
+    {
+      "path": "/docs/api/machines_usage.{format}",
+      "description": "Machines Usage"
+    },
+    {
+      "path": "/docs/api/release_notes.{format}",
+      "description": "Release Notes"
+    },
+    {
+      "path": "/docs/api/status.{format}",
+      "description": "Status"
+    },
+    {
+      "path": "/docs/api/user_activities.{format}",
+      "description": "User Activities"
+    },
+    {
+      "path": "/docs/api/users.{format}",
+      "description": "Users"
+    },
+    {
+      "path": "/docs/api/alert_rules.{format}",
+      "description": "Alert Rules"
+    }
+  ],
+  "authorizations": null,
+  "info": {
+    "contact": "help@elementalmachines.io",
+    "description": "Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.",
+    "title": "Elemental Machines API"
+  }
+}

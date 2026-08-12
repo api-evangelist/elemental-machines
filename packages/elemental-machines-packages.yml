@@ -1,0 +1,53 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org, rubygems.org search, api.github.com/orgs/elementalmachines/repos,
+  https://api.elementalmachines.io/ (Swagger UI console)
+summary: >-
+  Elemental Machines publishes NO first-party client library on any package registry, and its
+  public GitHub organization contains only forks of unrelated third-party Ruby gems. Consumers of
+  api.elementalmachines.io must hand-roll HTTP calls; the only machine-readable helper the provider
+  ships is the Swagger 1.2 contract at /docs/api-docs.json and the Swagger UI console that renders
+  it. No SDKs pointer is emitted in apis.yml because there is no official SDK to point at.
+package_count: 0
+official_package_count: 0
+packages: []
+registries_searched:
+- registry: npm
+  query: elemental-machines / elementalmachines
+  endpoint: https://registry.npmjs.org/-/v1/search
+  result: no first-party package; zero exact-name matches
+- registry: pypi
+  queries: [elemental-machines, elementalmachines, em-api]
+  endpoint: https://pypi.org/pypi/<pkg>/json
+  result: HTTP 404 on every candidate
+- registry: rubygems
+  query: elemental machines
+  endpoint: https://rubygems.org/api/v1/search.json
+  result: no first-party gem
+- registry: maven-central
+  result: not searched by name — no Java SDK is referenced anywhere in the provider's docs or site
+- registry: nuget
+  result: not searched by name — no .NET SDK is referenced anywhere in the provider's docs or site
+- registry: crates.io
+  result: not searched by name — no Rust SDK is referenced anywhere in the provider's docs or site
+- registry: pkg.go.dev
+  result: not searched by name — no Go SDK is referenced anywhere in the provider's docs or site
+github_organization:
+  url: https://github.com/elementalmachines
+  http_status: 200
+  public_repo_count: 5
+  first_party_sdk: false
+  note: >-
+    All five public repos are forks of unrelated third-party Ruby projects (wicked_pdf,
+    mandrill-api-ruby, omniauth-oktaoauth, active-record-query-trace, attachinary). The
+    omniauth-oktaoauth fork corroborates the Okta SSO used by the Dashboard, and the Rails-shaped
+    404 pages on api.elementalmachines.io corroborate a Ruby on Rails backend, but none of these
+    is a client SDK for the Elemental Machines API. Four of the five have not been pushed since
+    2020.
+decay_signal:
+  finding: no-sdk
+  note: >-
+    There is no SDK release date to compare against the API, because there is no SDK. The staleness
+    signal available instead is the GitHub organization itself: four of five repos last pushed in
+    2020.

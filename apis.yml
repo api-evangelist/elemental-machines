@@ -1,23 +1,169 @@
 aid: elemental-machines
 name: Elemental Machines
-description: 'Elemental Machines is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Elemental Machines is a Cambridge, Massachusetts LabOps connectivity company that instruments
+  laboratories and manufacturing floors with IoT sensors and a vendor-agnostic cloud platform for
+  environmental monitoring, cold-storage and freezer health, equipment utilization, alerting,
+  calibration and compliance reporting across life sciences R&D, biomanufacturing, academia and
+  government facilities. The platform ingests sensor and third-party equipment data at 15-second
+  resolution and exposes it through a public REST API at api.elementalmachines.io covering machines,
+  machine samples and sample statistics, utilization (aggregated, hourly and status), alert logs,
+  alert rules, users, user activities, customer groups, release notes and a server status check,
+  authenticated with OAuth 2.0 access tokens. The same data is pushed into ELN/LIMS/SDMS, QMS, MES,
+  BMS and CMMS systems and data warehouses through the company's data-integration services. The
+  company is ISO 9001:2015 certified, operates calibration to ISO 17025, and positions the platform
+  as a 21 CFR Part 11 / ALCOA+ compliant recording system for GxP-regulated laboratories.
+image: https://elementalmachines.com/wp-content/uploads/2024/11/connectivity-alerts-video.jpeg
 url: https://raw.githubusercontent.com/api-evangelist/elemental-machines/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+specificationVersion: '0.21'
 created: '2026-08-12'
 modified: '2026-08-12'
 tags:
-- Company
-apis: []
+- lab-operations
+- laboratory-monitoring
+- iot
+- sensors
+- life-sciences
+- cold-chain
+- environmental-monitoring
+- equipment-utilization
+- asset-management
+- alerting
+- compliance
+- gxp
+- manufacturing
+- time-series
+apis:
+- name: Elemental Machines API
+  description: >-
+    Public REST API for the Elemental Machines LabOps platform. Read machines (sensor-connected
+    assets), their time-series samples and computed sample statistics, aggregated/hourly/status
+    utilization rollups for a customer group, alert logs and alert rules, users, user activities and
+    customer groups, plus dated platform release notes and an unauthenticated server status check.
+    Authentication is OAuth 2.0 Resource Owner Password Credentials against /oauth/token; the
+    resulting token is passed as an access_token query parameter on every call. The provider
+    publishes a Swagger 1.2 contract and a Swagger UI console at api.elementalmachines.io.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - lab-operations
+  - laboratory-monitoring
+  - iot
+  - sensors
+  - time-series
+  - equipment-utilization
+  - alerting
+  - life-sciences
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: Overlay
+    url: overlays/elemental-machines-api-overlay.yaml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+- name: Elemental Machines Website MCP Server
+  description: >-
+    A remote Model Context Protocol server served from the elementalmachines.com WordPress host via
+    the WordPress MCP Adapter, advertised by /.well-known/oauth-protected-resource and
+    /.well-known/oauth-authorization-server. It is a website/content MCP surface, NOT an interface to
+    the LabOps API at api.elementalmachines.io. tools/list returns HTTP 401 with a Bearer
+    WWW-Authenticate challenge, so the tool schemas require authenticated introspection.
+  humanURL: https://elementalmachines.com/
+  baseURL: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - mcp
+  - agent-native
+  properties:
+  - type: MCPServer
+    url: mcp/elemental-machines-mcp.yml
+  - type: MCPServer
+    url: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+  - type: ToolCrosswalk
+    url: mcp/elemental-machines-tool-crosswalk.yml
+  - type: WellKnown
+    url: well-known/elemental-machines-well-known.yml
+common:
+- type: Website
+  url: https://elementalmachines.com/
+- type: DeveloperPortal
+  url: https://api.elementalmachines.io/
+- type: Documentation
+  url: https://api.elementalmachines.io/
+- type: APIReference
+  url: https://api.elementalmachines.io/
+- type: Support
+  url: https://elementalmachines.com/support/
+- type: HelpCenter
+  url: https://elementalmachines.freshdesk.com/support/solutions
+- type: Blog
+  url: https://elementalmachines.com/about/news/
+- type: BlogRSS
+  url: https://elementalmachines.com/feed/
+- type: GitHubOrganization
+  url: https://github.com/elementalmachines
+- type: SignUp
+  url: https://elementalmachines.com/request-a-trial/
+- type: TermsOfService
+  url: https://elementalmachines.com/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://elementalmachines.com/privacy-policy/
+- type: StatusPage
+  url: https://status.elementalmachines.io
+- type: Lifecycle
+  url: lifecycle/elemental-machines-lifecycle.yml
+- type: ChangeLog
+  url: changelog/elemental-machines-changelog.yml
+- type: Conformance
+  url: conformance/elemental-machines-conformance.yml
+- type: Compliance
+  url: conformance/elemental-machines-conformance.yml
+- type: Conventions
+  url: conventions/elemental-machines-conventions.yml
+- type: Authentication
+  url: authentication/elemental-machines-authentication.yml
+- type: OAuthScopes
+  url: scopes/elemental-machines-scopes.yml
+- type: DomainSecurity
+  url: security/elemental-machines-domain-security.yml
+- type: Packages
+  url: packages/elemental-machines-packages.yml
+- type: WellKnown
+  url: well-known/elemental-machines-well-known.yml
+- type: LLMsTxt
+  url: llms/elemental-machines-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://www.nasdaqprivatemarket.com/
+x-enrichment:
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 36
+  pass: local-v1

@@ -1,0 +1,67 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://api.elementalmachines.io/docs/api-docs.json (contract) +
+  live unauthenticated GET https://api.elementalmachines.io/api/status/check.json (response headers)
+summary: >-
+  Elemental Machines documents NO rate limits and emits NO rate-limit headers. The provider's
+  Swagger 1.2 declarations do not declare a 429 response on any of the seventeen operations, and a
+  live unauthenticated call to the status endpoint returns no RateLimit-*, X-RateLimit-* or
+  Retry-After header. A client therefore has no documented limit to respect and no runtime signal to
+  back off on — it can only infer throttling from an undocumented failure.
+limit_count: 0
+limits: []
+response_headers:
+  rate_limit_headers_present: false
+  probed_headers_observed:
+  - x-request-id
+  - etag
+  - cache-control
+  - x-runtime
+  - vary
+  - x-frame-options
+  - x-content-type-options
+  - x-xss-protection
+  - x-permitted-cross-domain-policies
+  - x-download-options
+  - referrer-policy
+  absent:
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  - RateLimit-Policy
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - Retry-After
+  - Strict-Transport-Security
+exhaustion_status_code: undocumented
+exhaustion_note: >-
+  No 429 Too Many Requests is declared on any operation in the contract. The declared error codes
+  are 400, 401, 403 and 404 only.
+backoff_guidance: none published
+practical_guidance:
+  note: >-
+    In the absence of a published limit, the pagination requirements are the only server-side brake
+    a client can see: page and per_page are REQUIRED on the three utilization operations and on
+    release notes, and the time-series reads accept an optional limit. Treat those as the intended
+    request-shaping mechanism, window /samples.json reads narrowly with from/to, and prefer
+    /sample_stats.json (server-side min/max/mean/median) over pulling raw series when only
+    aggregates are needed.
+  conditional_requests: >-
+    Responses carry a weak ETag and cache-control max-age=0, private, must-revalidate, so
+    If-None-Match revalidation is available and is the cheapest way to poll without re-transferring
+    unchanged payloads.
+  correlation: >-
+    Every response carries an x-request-id (Rails). Log it — it is the only handle support has for
+    diagnosing a throttled or failed call.
+evidence:
+- url: https://api.elementalmachines.io/api/status/check.json
+  http_status: 200
+  note: Unauthenticated; full response header set captured, no rate-limit family present.
+- url: https://api.elementalmachines.io/docs/api-docs.json
+  http_status: 200
+  note: Swagger 1.2 resource listing; no 429 in any declaration's responseMessages.
+cross_links:
+  conventions: conventions/elemental-machines-conventions.yml
+  errors: errors/elemental-machines-problem-types.yml

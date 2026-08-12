@@ -1,0 +1,1044 @@
+openapi: 3.1.0
+info:
+  title: Elemental Machines API
+  description: Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.
+  version: '1.0'
+  contact:
+    email: help@elementalmachines.io
+servers:
+- url: https://api.elementalmachines.io
+  description: Elemental Machines production API
+tags:
+- name: Alert Logs
+- name: Alert Rules
+- name: Groups
+- name: Machines Sample Stats
+- name: Machines Samples
+- name: Machines
+- name: Machines Usage
+- name: Authentication
+- name: Release Notes
+- name: Status
+- name: User Activities
+- name: Users
+paths:
+  /api/machines/{machine_uuid}/alert_logs.json:
+    get:
+      tags:
+      - Alert Logs
+      summary: Get all alert logs for machine
+      operationId: alertLogsIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: machine_uuid
+        in: path
+        description: Machine uuid, mac_address, or serial_number
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: Ending epoch timestamp in seconds. Default value is current time.
+        required: false
+        schema:
+          type: integer
+          default: 1785278041
+      - name: order
+        in: query
+        description: Order of Alert Logs returned [asc is default, desc is required to return most recent Alert
+          Logs]
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: limit
+        in: query
+        description: Number of Alert Logs to return [1 is minimum, 100 is default, 1200 is maximum]
+        required: false
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/alert_rules.json:
+    get:
+      tags:
+      - Alert Rules
+      summary: Get all alert rules
+      operationId: alertRulesIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: managed_machine_uuid
+        in: query
+        description: Managed Machine UUID filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/customer_groups/my.json:
+    get:
+      tags:
+      - Groups
+      summary: Get current group
+      operationId: customerGroupsMy
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/customer_groups.json:
+    get:
+      tags:
+      - Groups
+      summary: Get all groups
+      operationId: customerGroupsIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/{machine_uuid}/sample_stats.json:
+    get:
+      tags:
+      - Machines Sample Stats
+      summary: Get sensor minimum, maximum, mean and median values
+      operationId: machineSampleStatsIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: machine_uuid
+        in: path
+        description: Machine UUID
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Starting epoch timestamp in seconds. Blank will default to 24 hours ago.
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: Ending epoch timestamp in seconds. Blank will default to current time.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/{machine_uuid}/samples.json:
+    get:
+      tags:
+      - Machines Samples
+      summary: Get all machine samples for timestamp range
+      operationId: machineSamplesIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: machine_uuid
+        in: path
+        description: Machine uuid, mac_address, or serial_number
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: Ending epoch timestamp in seconds. Default value is current time.
+        required: false
+        schema:
+          type: integer
+          default: 1785278041
+      - name: order
+        in: query
+        description: Order of samples returned [asc is default, desc is required to return most recent samples]
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: limit
+        in: query
+        description: Number of samples to return [1 is minimum, 100 is default, 1200 is maximum]
+        required: false
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines.json:
+    get:
+      tags:
+      - Machines
+      summary: Get all machines
+      operationId: machinesIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/{uuid}.json:
+    get:
+      tags:
+      - Machines
+      summary: Get machine
+      operationId: machinesShow
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: uuid
+        in: path
+        description: Machine UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/usage/aggregated.json:
+    get:
+      tags:
+      - Machines Usage
+      summary: Get aggregated utilization information for all machines under a customer group
+      operationId: machinesUsageAggregated
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: customer_group_uuid
+        in: query
+        description: Customer group UUID
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of results per page
+        required: true
+        schema:
+          type: integer
+          default: 10
+      - name: time_zone
+        in: query
+        description: Time zone string. Default to user time zone if not specified.
+        required: false
+        schema:
+          type: string
+      - name: start_work_hour
+        in: query
+        description: Start work hour, integer 0~23. Default work hours to all 24 hours if not specified.
+        required: false
+        schema:
+          type: integer
+      - name: end_work_hour
+        in: query
+        description: End work hour, integer 0~23. Default work hours to all 24 hours if not specified.
+        required: false
+        schema:
+          type: integer
+      - name: work_days[]
+        in: query
+        description: Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3).
+          Default to all 7 days if not specified. For help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: start_date
+        in: query
+        description: Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31).
+          If start_date is specified, end_date will become required.
+        required: false
+        schema:
+          type: string
+          default: '2026-06-28'
+      - name: end_date
+        in: query
+        description: End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07).
+          If end_date is specified, start_date will become required.
+        required: false
+        schema:
+          type: string
+          default: '2026-07-28'
+      - name: location_tags[]
+        in: query
+        description: Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help
+          on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: equipment_category_tags[]
+        in: query
+        description: Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: machine_uuids[]
+        in: query
+        description: Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: sort_by
+        in: query
+        description: One of equipment_name, most_used [most_used is default]
+        required: false
+        schema:
+          type: string
+      - name: sort_direction
+        in: query
+        description: asc or desc [asc is default]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/usage/hourly.json:
+    get:
+      tags:
+      - Machines Usage
+      summary: Get hourly utilization information for all machines under a customer group
+      operationId: machinesUsageHourly
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: customer_group_uuid
+        in: query
+        description: Customer group UUID
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of results per page
+        required: true
+        schema:
+          type: integer
+          default: 10
+      - name: time_zone
+        in: query
+        description: Time zone string. Default to user time zone if not specified.
+        required: false
+        schema:
+          type: string
+      - name: start_work_hour
+        in: query
+        description: Start work hour, integer 0~23. Default work hours to all 24 hours if not specified.
+        required: false
+        schema:
+          type: integer
+      - name: end_work_hour
+        in: query
+        description: End work hour, integer 0~23. Default work hours to all 24 hours if not specified.
+        required: false
+        schema:
+          type: integer
+      - name: work_days[]
+        in: query
+        description: Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3).
+          Default to all 7 days if not specified. For help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: start_date
+        in: query
+        description: Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31).
+          If start_date is specified, end_date will become required.
+        required: false
+        schema:
+          type: string
+          default: '2026-07-27'
+      - name: end_date
+        in: query
+        description: End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07).
+          If end_date is specified, start_date will become required.
+        required: false
+        schema:
+          type: string
+          default: '2026-07-28'
+      - name: location_tags[]
+        in: query
+        description: Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help
+          on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: equipment_category_tags[]
+        in: query
+        description: Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: machine_uuids[]
+        in: query
+        description: Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: sort_by
+        in: query
+        description: One of equipment_name, most_used [most_used is default]
+        required: false
+        schema:
+          type: string
+      - name: sort_direction
+        in: query
+        description: asc or desc [asc is default]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/machines/usage/status.json:
+    get:
+      tags:
+      - Machines Usage
+      summary: Get the usage statuses for all machines under a customer group
+      operationId: machinesUsageStatus
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: customer_group_uuid
+        in: query
+        description: Customer group UUID
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of results per page
+        required: true
+        schema:
+          type: integer
+          default: 10
+      - name: location_tags[]
+        in: query
+        description: Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help
+          on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: equipment_category_tags[]
+        in: query
+        description: Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: machine_uuids[]
+        in: query
+        description: Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For
+          help on multiple values, contact Customer Support.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: sort_by
+        in: query
+        description: One of equipment_name, eq_category, location, availability [availability is default]
+        required: false
+        schema:
+          type: string
+      - name: sort_direction
+        in: query
+        description: asc or desc [asc is default]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /oauth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Get access token
+      description: An access token is needed for all subsequent authenticated requests. Contact us for Client ID/Secret.
+      operationId: oauthToken
+      parameters:
+      - name: grant_type
+        in: query
+        description: Grant type
+        required: false
+        schema:
+          type: string
+          default: password
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Email address
+                  type: string
+                password:
+                  description: Password
+                  type: string
+                client_id:
+                  description: Client ID
+                  type: string
+                client_secret:
+                  description: Client secret
+                  type: string
+              required:
+              - username
+              - password
+              - client_id
+              - client_secret
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security: []
+  /api/release_notes.json:
+    get:
+      tags:
+      - Release Notes
+      summary: Change logs for releases
+      operationId: releaseNotesIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of results per page
+        required: true
+        schema:
+          type: integer
+          default: 10
+      - name: software
+        in: query
+        description: Software. Default is all software if not specified.
+        required: false
+        schema:
+          type: string
+      - name: from_date
+        in: query
+        description: From date, e.g. 2022-09-30. Default is All Time if not specified.
+        required: false
+        schema:
+          type: string
+      - name: to_date
+        in: query
+        description: To date, e.g. 2022-10-31. Default is All Time if not specified.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/status/check.json:
+    get:
+      tags:
+      - Status
+      summary: Check server status
+      operationId: statusCheck
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+      security: []
+  /api/user_activities.json:
+    get:
+      tags:
+      - User Activities
+      summary: Get all user activities for your customer(s)
+      operationId: userActivitiesIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: customer_group_uuid
+        in: query
+        description: UUID of Customer Group [empty = all]
+        required: false
+        schema:
+          type: string
+      - name: usage_type
+        in: query
+        description: Usage Type [dashboard, mobile, calendar; empty = all]
+        required: false
+        schema:
+          type: string
+      - name: action_type
+        in: query
+        description: Action Type [view, change, login, all; empty/default = change]
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: Ending epoch timestamp in seconds. Default value is current time.
+        required: false
+        schema:
+          type: integer
+          default: 1785278041
+      - name: order
+        in: query
+        description: Order of activities returned [asc is default, desc is required to return most recent activities]
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: limit
+        in: query
+        description: Number of activities to return [1 is minimum, 100 is default, 1200 is maximum]
+        required: false
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/users/my.json:
+    get:
+      tags:
+      - Users
+      summary: Get current user
+      operationId: usersMy
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+  /api/users.json:
+    get:
+      tags:
+      - Users
+      summary: Get all users
+      operationId: usersIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+components:
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: query
+      name: access_token
+      description: OAuth 2.0 access token passed as the access_token query parameter. Obtain one from POST /oauth/token
+        (Resource Owner Password Credentials grant).
+    oauth2_password:
+      type: oauth2
+      description: Resource Owner Password Credentials grant. Documented in the provider's Swagger 1.2 declaration
+        at /docs/api/oauth.json.
+      flows:
+        password:
+          tokenUrl: https://api.elementalmachines.io/oauth/token
+          scopes: {}
+security:
+- access_token: []

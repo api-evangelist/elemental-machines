@@ -1,0 +1,83 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "machine_samples",
+  "apis": [
+    {
+      "path": "/api/machines/{machine_uuid}/samples.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "machine_uuid",
+              "type": "string",
+              "description": "Machine uuid, mac_address, or serial_number",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "from",
+              "type": "integer",
+              "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "to",
+              "type": "integer",
+              "description": "Ending epoch timestamp in seconds. Default value is current time.",
+              "required": false,
+              "defaultValue": 1785278041
+            },
+            {
+              "paramType": "query",
+              "name": "order",
+              "type": "string",
+              "description": "Order of samples returned [asc is default, desc is required to return most recent samples]",
+              "required": false,
+              "defaultValue": "asc"
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "Number of samples to return [1 is minimum, 100 is default, 1200 is maximum]",
+              "required": false,
+              "defaultValue": 100
+            }
+          ],
+          "summary": "Get all machine samples for timestamp range",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::MachineSamples#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,157 @@
+generated: '2026-08-12'
+method: derived
+source: >-
+  openapi/elemental-machines-api-openapi.yml (converted from
+  https://api.elementalmachines.io/docs/api-docs.json, Swagger 1.2) +
+  https://api.elementalmachines.io/ Swagger UI console
+summary: >-
+  Cross-cutting request/response semantics for the Elemental Machines LabOps REST API, derived from
+  the provider's own Swagger 1.2 declarations. This is a Rails-backed, read-only, .json-suffixed
+  API. Everything below is what the contract actually states; where the contract is silent it is
+  recorded as undocumented rather than assumed.
+authentication:
+  styles: [oauth2_password, api_key_query]
+  token_endpoint: https://api.elementalmachines.io/oauth/token
+  grant: password
+  grant_parameters: [username, password, client_id, client_secret, grant_type]
+  token_transport: query parameter
+  token_parameter: access_token
+  note: >-
+    Every operation except POST /oauth/token and GET /api/status/check.json declares access_token as
+    a REQUIRED query parameter. Carrying a bearer credential in the query string means it lands in
+    server logs, proxy logs and browser history; there is no documented Authorization-header
+    alternative. Token lifetime, refresh and revocation are undocumented.
+  see: authentication/elemental-machines-authentication.yml
+url_conventions:
+  base: https://api.elementalmachines.io
+  prefix: /api
+  format_suffix: .json
+  note: >-
+    Rails-style format suffix on every resource path (/api/machines.json,
+    /api/machines/{uuid}.json). The Swagger 1.2 resource listing templates these as
+    /docs/api/<resource>.{format}. Identifiers are UUIDs (machine_uuid, uuid,
+    customer_group_uuid).
+http_methods:
+  used: [GET, POST]
+  note: >-
+    The published surface is read-only apart from the POST token exchange. There are no documented
+    create, update or delete operations — no writes, therefore no idempotency question to answer.
+pagination:
+  documented: true
+  styles:
+  - style: page-number
+    params: [page, per_page]
+    required: true
+    applies_to: [machinesUsageAggregated, machinesUsageHourly, machinesUsageStatus, releaseNotesIndex]
+    note: >-
+      page and per_page are declared REQUIRED on all four operations that use them — a caller
+      cannot omit them and get a default page.
+  - style: cursor-less-window
+    params: [from, to, limit, order]
+    required: false
+    applies_to: [machineSamplesIndex, machineSampleStatsIndex, alertLogsIndex, userActivitiesIndex]
+    note: >-
+      Time-series reads window by from/to epoch integers with an optional limit and order. No
+      next-page token or Link header is documented, so deep paging across a long window must be
+      driven by the caller advancing from/to.
+  response_envelope: undocumented
+  note: >-
+    The Swagger 1.2 declarations carry no models and no response schemas, so the shape of the
+    returned collection (total counts, page metadata) is not described anywhere in the contract.
+sorting_and_filtering:
+  sort_params: [sort_by, sort_direction]
+  applies_to: [machinesUsageAggregated, machinesUsageHourly, machinesUsageStatus]
+  ordering_param: order
+  applies_to_ordering: [machineSamplesIndex, alertLogsIndex, userActivitiesIndex]
+  filters:
+    time_window: [from, to, start_date, end_date]
+    tenancy: [customer_group_uuid]
+    tagging: ['location_tags[]', 'equipment_category_tags[]']
+    selection: ['machine_uuids[]']
+    working_hours: [time_zone, start_work_hour, end_work_hour, 'work_days[]']
+    activity: [usage_type, action_type]
+    release_notes: [software, from_date, to_date]
+  note: >-
+    Array filters use the Rails bracket convention (location_tags[]). The contract's own
+    description for location_tags[] says "Enter single parameter text value in this form (e.g. Lab
+    24). For help on multiple values, contact Customer Support" — the multi-value encoding is
+    deliberately not published.
+idempotency:
+  documented: false
+  supported: false
+  note: >-
+    No Idempotency-Key header, no idempotent-retry semantics, and no idempotency scope or retention
+    window are documented. The published surface is read-only (GET) apart from the token exchange,
+    so GET safety is the only idempotency guarantee available. NO Idempotency pointer is emitted in
+    apis.yml — there is nothing to point at.
+versioning:
+  scheme: document-version-only
+  api_version: '1.0'
+  source: apiVersion field in https://api.elementalmachines.io/docs/api-docs.json
+  in_path: false
+  in_header: false
+  note: >-
+    The contract declares apiVersion 1.0 but there is no version segment in any URL and no version
+    header. A breaking change would land silently on the same paths.
+  see: lifecycle/elemental-machines-lifecycle.yml
+error_envelope:
+  format: undocumented
+  rfc9457: false
+  note: >-
+    The declarations enumerate status codes and human strings (401 "Not Authorized", 403
+    "Forbidden", 404 "Not Found", 400 "Invalid parameters.") but describe no error body schema.
+    Observed 404s from the Rails app return an HTML error page, not JSON.
+  see: errors/elemental-machines-problem-types.yml
+rate_limits:
+  documented: false
+  headers: undocumented
+  see: rate-limits/elemental-machines-rate-limits.yml
+request_tracing:
+  request_id_header: x-request-id
+  documented: false
+  observed: true
+  observed_on: live GET https://api.elementalmachines.io/api/status/check.json (2026-08-12)
+  note: >-
+    The API emits an x-request-id UUID on every response (Rails default) and an x-runtime timing
+    header, but neither is documented in the contract or the console. Undocumented but present —
+    log x-request-id, it is the only correlation handle support can act on.
+caching:
+  etag: true
+  cache_control: max-age=0, private, must-revalidate
+  conditional_requests: If-None-Match supported (weak ETag observed)
+  observed: true
+  documented: false
+  note: >-
+    Weak ETags are emitted and must-revalidate is set, so conditional polling works even though the
+    provider never mentions it. This matters for a 15-second-resolution telemetry API where naive
+    polling is the default integration pattern.
+server_stack:
+  observed: >-
+    nginx/1.30.3 + Phusion Passenger 6.1.8, Ruby on Rails, Sidekiq, Balena-managed edge gateways,
+    fronted by Google infrastructure (via 1.1 google).
+  source: response headers + /api/status/check.json body keys
+  note: >-
+    Recorded because the Rails conventions (.json suffix, x-request-id, empty Swagger models)
+    explain the shape of the whole contract.
+webhooks:
+  documented: false
+  note: >-
+    Alerting is delivered to humans (email/SMS/app notifications) per the product marketing; no
+    outbound HTTP webhook subscription API is documented, and no AsyncAPI or event catalog is
+    published. Machine-to-machine consumers poll /api/machines/{machine_uuid}/samples.json and
+    /api/machines/{machine_uuid}/alert_logs.json.
+observability:
+  status_endpoint: /api/status/check.json
+  status_auth_required: false
+  note: >-
+    GET /api/status/check.json is the one unauthenticated operation. It returns a flat JSON object
+    of subsystem health strings (alerts, sidekiq, gateway_whitelists, smart_context,
+    prediction_statuses, balena_statuses). The sidekiq and balena keys confirm a Rails + Sidekiq
+    backend with Balena-managed edge gateways.
+cross_links:
+  authentication: authentication/elemental-machines-authentication.yml
+  scopes: scopes/elemental-machines-scopes.yml
+  errors: errors/elemental-machines-problem-types.yml
+  lifecycle: lifecycle/elemental-machines-lifecycle.yml
+  rate_limits: rate-limits/elemental-machines-rate-limits.yml
+  data_model: data-model/elemental-machines-data-model.yml

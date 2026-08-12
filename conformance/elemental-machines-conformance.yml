@@ -1,0 +1,168 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://elementalmachines.com/solutions/compliance/regulatory/ +
+  https://elementalmachines.com/quality-documentation/ +
+  https://elementalmachines.com/wp-content/uploads/2025/02/2025_EM_ISO9001-2015_Certificate.pdf +
+  openapi/elemental-machines-api-openapi.yml
+summary: >-
+  Elemental Machines makes strong, specific, life-sciences REGULATORY conformance claims — ISO
+  9001:2015 with a downloadable certificate, ISO 17025 calibration, 21 CFR Part 11 / ALCOA+
+  electronic records, GxP (GMP/GLP/GCP) and NIST-traceable sensors — and essentially no API
+  ENGINEERING conformance. The contract is a Swagger 1.2 document, predating OpenAPI 3.x by a
+  decade; there is no RFC 9457 problem+json, no RFC 8594 sunset signalling, no RFC 9110 rate-limit
+  headers, no JSON:API, and no OpenID Connect. The gap between the company's regulatory rigor and
+  its API-contract modernity is the story here.
+conformance:
+- id: iso-9001-2015
+  conforms: true
+  category: quality-management
+  evidence:
+    claim: >-
+      "ISO 9001:2015-certified, demonstrating our unwavering commitment to quality"
+    certificate: https://elementalmachines.com/wp-content/uploads/2025/02/2025_EM_ISO9001-2015_Certificate.pdf
+    certificate_http_status: 200
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+  note: A named, dated, downloadable third-party certificate — the strongest compliance evidence in this profile.
+- id: iso-17025
+  conforms: true
+  category: calibration-competence
+  evidence:
+    claim: >-
+      Operations "adhere to ISO 17025 standards, ensuring the reliability and accuracy of our
+      calibration processes"
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+  note: Adherence claim for the calibration-services line; no accreditation certificate is published alongside it.
+- id: 21-cfr-part-11
+  conforms: claimed
+  category: regulatory-electronic-records
+  evidence:
+    claim: >-
+      "21 CFR Part 11 compliant data recording system committed to ALCOA+ standards" with
+      "automated audit trail generation, featuring encrypted data transmission, redundant data
+      storage, precise time-stamping, and rigorous user authentication protocols"
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+  note: >-
+    Self-asserted. Part 11 is a self-declared posture backed by validation documentation, not a
+    certification — the company also publishes a validation page at
+    /solutions/compliance/validation/. The API's own audit surface (GET /api/user_activities.json,
+    with usage_type and action_type filters) is the machine-readable expression of this claim.
+- id: alcoa-plus
+  conforms: claimed
+  category: data-integrity
+  evidence:
+    claim: '"committed to ALCOA+ standards"'
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+- id: gxp
+  conforms: claimed
+  category: regulatory
+  evidence:
+    claim: >-
+      "GMP/GLP regulated laboratory monitoring" guidelines including Good Manufacturing Practices,
+      Good Laboratory Practices and Good Clinical Practices
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+- id: nist-traceable
+  conforms: claimed
+  category: metrology
+  evidence:
+    claim: NIST-traceable sensors with field calibration and audit-ready reporting
+    source: https://elementalmachines.com/solutions/compliance/regulatory/
+- id: oauth2
+  conforms: true
+  category: api-standard
+  evidence:
+    claim: >-
+      The API declares an OAuth 2.0 Resource Owner Password Credentials grant at
+      POST /oauth/token with username, password, client_id, client_secret and grant_type.
+    source: https://api.elementalmachines.io/docs/api/oauth.json
+  note: >-
+    Conforms to RFC 6749 in form, but to the grant type RFC 8252 / OAuth 2.1 explicitly deprecate.
+    The token is then carried as a query parameter, which RFC 6750 section 5.3 advises against.
+- id: oauth2-authorization-code-pkce
+  conforms: true
+  category: api-standard
+  scope: elementalmachines.com MCP surface only
+  evidence:
+    claim: >-
+      /.well-known/oauth-authorization-server advertises authorization_code + refresh_token grants
+      with code_challenge_methods_supported ["S256"].
+    source: https://elementalmachines.com/.well-known/oauth-authorization-server
+    http_status: 200
+  note: Applies to the WordPress MCP server, not to the LabOps REST API.
+- id: rfc-8414-oauth-authorization-server-metadata
+  conforms: true
+  category: api-standard
+  evidence:
+    url: https://elementalmachines.com/.well-known/oauth-authorization-server
+    http_status: 200
+  note: Served only on the marketing host; the API host returns 404.
+- id: rfc-9728-oauth-protected-resource-metadata
+  conforms: true
+  category: api-standard
+  evidence:
+    url: https://elementalmachines.com/.well-known/oauth-protected-resource
+    http_status: 200
+- id: openid-connect
+  conforms: false
+  category: api-standard
+  evidence:
+    probe: /.well-known/openid-configuration
+    http_status: 404
+  note: >-
+    The Dashboard supports Okta SSO for human login (corroborated by the company's public
+    omniauth-oktaoauth fork), but no OIDC discovery document is served for API consumers.
+- id: openapi-3
+  conforms: false
+  category: api-standard
+  evidence:
+    published: https://api.elementalmachines.io/docs/api-docs.json
+    version: Swagger 1.2
+  note: >-
+    The provider publishes a machine-readable contract — genuinely more than most companies its
+    size — but in Swagger 1.2, a format retired in 2014. It carries no models, no response schemas
+    and no examples. openapi/elemental-machines-api-openapi.yml is API Evangelist's faithful 3.1
+    conversion, not a provider artifact.
+- id: rfc-9457-problem-details
+  conforms: false
+  category: api-standard
+  evidence: No application/problem+json media type and no error schema anywhere in the contract.
+- id: rfc-8594-sunset-header
+  conforms: false
+  category: api-standard
+  evidence: No deprecation or sunset policy is published; no operation is marked deprecated.
+- id: rate-limit-headers
+  conforms: false
+  category: api-standard
+  evidence: No RateLimit-* or X-RateLimit-* headers and no 429 response are documented.
+- id: idempotency
+  conforms: false
+  category: api-standard
+  evidence: >-
+    No Idempotency-Key mechanism is documented. The published surface is read-only apart from the
+    token exchange, so there are no non-idempotent operations to protect.
+- id: pagination
+  conforms: true
+  category: api-standard
+  evidence: >-
+    page + per_page (required) on the three utilization operations and release notes; from/to/limit/order
+    windowing on the time-series and activity operations.
+  note: Two distinct pagination styles in one API, and no documented response envelope for either.
+- id: json-api
+  conforms: false
+  category: api-standard
+  evidence: Rails-style .json suffix responses; no JSON:API media type or document structure.
+- id: fhir
+  conforms: false
+  category: industry-standard
+  evidence: Not a clinical-data API; no FHIR resources.
+- id: scim
+  conforms: false
+  category: industry-standard
+  evidence: >-
+    Users and customer groups are readable (GET /api/users.json, /api/customer_groups.json) but
+    there is no SCIM endpoint and no user provisioning surface.
+cross_links:
+  authentication: authentication/elemental-machines-authentication.yml
+  errors: errors/elemental-machines-problem-types.yml
+  lifecycle: lifecycle/elemental-machines-lifecycle.yml
+  well_known: well-known/elemental-machines-well-known.yml

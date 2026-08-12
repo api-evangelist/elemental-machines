@@ -1,0 +1,71 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "customer_groups",
+  "apis": [
+    {
+      "path": "/api/customer_groups/my.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            }
+          ],
+          "summary": "Get current group",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            }
+          ],
+          "nickname": "Api::CustomerGroups#my",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/customer_groups.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            }
+          ],
+          "summary": "Get all groups",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            }
+          ],
+          "nickname": "Api::CustomerGroups#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

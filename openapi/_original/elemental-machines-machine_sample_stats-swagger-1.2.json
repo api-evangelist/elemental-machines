@@ -1,0 +1,66 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "machine_sample_stats",
+  "apis": [
+    {
+      "path": "/api/machines/{machine_uuid}/sample_stats.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "machine_uuid",
+              "type": "string",
+              "description": "Machine UUID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "from",
+              "type": "integer",
+              "description": "Starting epoch timestamp in seconds. Blank will default to 24 hours ago.",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "to",
+              "type": "integer",
+              "description": "Ending epoch timestamp in seconds. Blank will default to current time.",
+              "required": false
+            }
+          ],
+          "summary": "Get sensor minimum, maximum, mean and median values",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::MachineSampleStats#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

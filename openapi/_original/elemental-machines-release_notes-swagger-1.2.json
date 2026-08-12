@@ -1,0 +1,90 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "release_notes",
+  "apis": [
+    {
+      "path": "/api/release_notes.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page number",
+              "required": true,
+              "defaultValue": 1
+            },
+            {
+              "paramType": "query",
+              "name": "per_page",
+              "type": "integer",
+              "description": "Number of results per page",
+              "required": true,
+              "defaultValue": 10
+            },
+            {
+              "paramType": "query",
+              "name": "software",
+              "type": "string",
+              "description": "Software. Default is all software if not specified.",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "dashboard",
+                  "calendar-usage",
+                  "usage-service"
+                ]
+              }
+            },
+            {
+              "paramType": "query",
+              "name": "from_date",
+              "type": "string",
+              "description": "From date, e.g. 2022-09-30. Default is All Time if not specified.",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "to_date",
+              "type": "string",
+              "description": "To date, e.g. 2022-10-31. Default is All Time if not specified.",
+              "required": false
+            }
+          ],
+          "summary": "Change logs for releases",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Invalid parameters."
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            }
+          ],
+          "nickname": "Api::ReleaseNotes#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

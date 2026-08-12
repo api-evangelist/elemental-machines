@@ -1,0 +1,104 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://info.elementalmachines.com/release-notes +
+  https://elementalmachines.freshdesk.com/support/solutions +
+  https://api.elementalmachines.io/docs/api/release_notes.json
+summary: >-
+  Elemental Machines maintains THREE separate release-note surfaces and none of them is a
+  developer-facing API changelog. The marketing changelog at info.elementalmachines.com/release-notes
+  is public and dated but has not been updated since November 2022. The current release notes live in
+  the Freshdesk knowledge base, which is JS-rendered and reachable only through search. The most
+  structured feed of all — GET /api/release_notes.json, with software, from_date, to_date, page and
+  per_page filters — is inside the API itself and requires an access_token. No entry on any surface
+  describes a change to the API contract; every one describes Dashboard, Calendar, Usage or Mobile
+  app changes. There is no API changelog.
+scheme: product-release-notes
+versioning_observed: >-
+  Per-app semantic-ish versions appear in the entries (Dashboard Release 3.79.0, 3.96.0;
+  Calendar/Usage Release 1.10.0). These version the applications, NOT the REST API, which declares
+  apiVersion 1.0 with no version segment in any URL.
+current_api_version: '1.0'
+surfaces:
+- name: Public marketing changelog
+  url: https://info.elementalmachines.com/release-notes
+  http_status: 200
+  public: true
+  dated: true
+  machine_readable: false
+  entry_count_listed: 6
+  newest_entry: '2022-11-21'
+  stale: true
+  note: >-
+    Six entries total, newest dated November 21, 2022 (describing software released November 18,
+    2022). Nearly four years without an update while the product demonstrably kept shipping — see
+    the Freshdesk surface below.
+- name: Freshdesk knowledge base — Releases
+  url: https://elementalmachines.freshdesk.com/support/solutions
+  http_status: 200
+  public: true
+  dated: true
+  machine_readable: false
+  note: >-
+    This is where current release notes actually live, organized into monthly "Releases" folders
+    (e.g. "August 2024 - Releases" at
+    /support/solutions/articles/19000160661-dashboard-release-3-96-0-august-6-2024, plus 2025
+    monthly folders). The portal renders client-side and exposes no folder index to an
+    unauthenticated crawler, so individual articles are reachable only by search-engine hit, not by
+    walking the site.
+- name: Release notes API
+  url: https://api.elementalmachines.io/api/release_notes.json
+  operationId: releaseNotesIndex
+  public: false
+  auth_required: true
+  machine_readable: true
+  filters: [software, from_date, to_date, page, per_page]
+  note: >-
+    The most useful of the three — filterable, paginated, JSON — and the only one an integrator
+    could poll. It is gated behind an OAuth access_token, so its contents cannot be recorded here.
+entries:
+- date: '2022-11-21'
+  title: Heatmaps, inline editing, mobile improvements & more!
+  url: https://info.elementalmachines.com/release-notes/heatmaps-inline-editing-mobile-improvements-more
+  released: '2022-11-18'
+  scope: [dashboard, mobile]
+  breaking: false
+  highlights:
+  - Usage heatmap feature released
+  - Machine management and pause-notes improvements
+  - Mobile improvements
+- date: '2022-09-01'
+  title: Release Notes - Calendar/Usage
+  url: https://info.elementalmachines.com/release-notes/release-notes_aug-2nd-0-0
+  scope: [calendar, usage, dashboard]
+  breaking: false
+  versions:
+    calendar_usage: 1.10.0
+    dashboard: 3.79.0
+  highlights:
+  - Display of partner logos
+  - Upload of small and large partner logos in Dashboard
+- date: '2022-07-13'
+  title: 'Release Notes: Dashboard Improvements'
+  url: https://info.elementalmachines.com/release-notes/release-notes-dashboard-improvements
+  scope: [dashboard]
+  breaking: false
+  highlights:
+  - Extra-large Data Logbook exports
+- date: '2022-07-07'
+  title: 'Release Notes: Usage Solution App'
+  url: https://info.elementalmachines.com/release-notes/release-notes-usage-solution
+  scope: [usage]
+  breaking: false
+  highlights:
+  - Global launch of the Usage Solution app for real-time and historic equipment utilization
+entries_note: >-
+  Only entries with a date verified on the page itself are listed. Two further listed entries
+  ("Release Notes - Single Login", "Release Notes - Utilization View") were not opened and are
+  therefore not dated here. Freshdesk-era entries from 2024-2025 are known to exist (e.g. Dashboard
+  Release 3.96.0, August 6, 2024) but the portal does not serve a crawlable index, so they are not
+  transcribed.
+api_changes_documented: false
+breaking_change_policy: none published
+cross_links:
+  lifecycle: lifecycle/elemental-machines-lifecycle.yml

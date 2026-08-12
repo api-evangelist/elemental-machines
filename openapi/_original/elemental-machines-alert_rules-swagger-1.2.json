@@ -1,0 +1,47 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "",
+  "resourcePath": "alert_rules",
+  "apis": [
+    {
+      "path": "/api/alert_rules.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "Access token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "managed_machine_uuid",
+              "type": "string",
+              "description": "Managed Machine UUID filter",
+              "required": false
+            }
+          ],
+          "summary": "Get all alert rules",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Not Authorized"
+            }
+          ],
+          "nickname": "Api::AlertRules#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,113 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/elemental-machines-api-openapi.yml + mcp/elemental-machines-mcp.yml
+summary: >-
+  Elemental Machines has both an OpenAPI-describable REST surface and a live MCP server, so a
+  crosswalk is emitted — but the two DO NOT MEET. The MCP server is a WordPress content MCP on the
+  marketing host (elementalmachines.com); the REST API is the LabOps platform on a different host
+  (api.elementalmachines.io). No tool on the MCP side is backed by any operation on the REST side,
+  and the MCP tool list is auth-gated so it cannot even be enumerated. The whole 17-operation LabOps
+  surface is therefore rest_only — there is currently NO agent-callable path to machines, samples,
+  utilization or alerts. That gap is the finding.
+surfaces:
+  openapi:
+    path: openapi/elemental-machines-api-openapi.yml
+    origin: https://api.elementalmachines.io/docs/api-docs.json (Swagger 1.2, converted)
+    host: https://api.elementalmachines.io
+    gated: false
+    note: Contract is public and unauthenticated to read; calling it requires an OAuth access token.
+  mcp:
+    url: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+    host: https://elementalmachines.com
+    gated: true
+    note: tools/list returns HTTP 401 with a Bearer challenge; tool names and schemas are unknown.
+  graphql:
+    present: false
+crosswalk: []
+mcp_only:
+- tool: '(unknown)'
+  reason: >-
+    The MCP tool list could not be enumerated (HTTP 401). Whatever tools exist are served by the
+    WordPress MCP Adapter against site content, not against the LabOps API, so none of them is
+    expected to bind to a REST operationId in this repo.
+rest_only:
+- operationId: machinesIndex
+  path: /api/machines.json
+  method: get
+  reason: No MCP tool exposes the machine inventory.
+- operationId: machinesShow
+  path: /api/machines/{uuid}.json
+  method: get
+  reason: No MCP tool exposes a single machine.
+- operationId: machineSamplesIndex
+  path: /api/machines/{machine_uuid}/samples.json
+  method: get
+  reason: No MCP tool exposes sensor time-series samples.
+- operationId: machineSampleStatsIndex
+  path: /api/machines/{machine_uuid}/sample_stats.json
+  method: get
+  reason: No MCP tool exposes min/max/mean/median sample statistics.
+- operationId: machinesUsageAggregated
+  path: /api/machines/usage/aggregated.json
+  method: get
+  reason: No MCP tool exposes aggregated utilization.
+- operationId: machinesUsageHourly
+  path: /api/machines/usage/hourly.json
+  method: get
+  reason: No MCP tool exposes hourly utilization.
+- operationId: machinesUsageStatus
+  path: /api/machines/usage/status.json
+  method: get
+  reason: No MCP tool exposes machine usage status.
+- operationId: alertLogsIndex
+  path: /api/machines/{machine_uuid}/alert_logs.json
+  method: get
+  reason: No MCP tool exposes alert history.
+- operationId: alertRulesIndex
+  path: /api/alert_rules.json
+  method: get
+  reason: No MCP tool exposes alert rule configuration.
+- operationId: usersIndex
+  path: /api/users.json
+  method: get
+  reason: No MCP tool exposes the user roster.
+- operationId: usersMy
+  path: /api/users/my.json
+  method: get
+  reason: No MCP tool exposes the current user.
+- operationId: customerGroupsIndex
+  path: /api/customer_groups.json
+  method: get
+  reason: No MCP tool exposes customer groups.
+- operationId: customerGroupsMy
+  path: /api/customer_groups/my.json
+  method: get
+  reason: No MCP tool exposes the current customer group.
+- operationId: userActivitiesIndex
+  path: /api/user_activities.json
+  method: get
+  reason: No MCP tool exposes user activity/audit records.
+- operationId: releaseNotesIndex
+  path: /api/release_notes.json
+  method: get
+  reason: No MCP tool exposes platform release notes.
+- operationId: statusCheck
+  path: /api/status/check.json
+  method: get
+  reason: No MCP tool exposes the server status check.
+- operationId: oauthToken
+  path: /oauth/token
+  method: post
+  reason: Token endpoint; not a candidate for a tool binding.
+coverage:
+  rest_operations: 17
+  mcp_tools_known: 0
+  mcp_tools_enumerable: false
+  bound: 0
+  mcp_only: 0
+  rest_only: 17
+  bound_pct: 0
+confidence_note: >-
+  Zero bindings is an OBSERVED result, not an unproven one: the two surfaces sit on different hosts
+  with different auth systems and different subject matter. No binding was guessed. If the provider
+  later publishes an MCP server over the LabOps API, this file should be re-derived.

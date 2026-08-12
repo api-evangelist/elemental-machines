@@ -1,0 +1,67 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  openapi/elemental-machines-api-openapi.yml (derived baseline) +
+  https://elementalmachines.com/.well-known/oauth-authorization-server (HTTP 200) +
+  https://elementalmachines.com/.well-known/oauth-protected-resource (HTTP 200)
+summary: >-
+  Two OAuth surfaces exist and they have completely different scope postures. The LabOps REST API at
+  api.elementalmachines.io uses an OAuth 2.0 password grant with an EMPTY scope set — the token is
+  all-or-nothing, and authorization is enforced entirely by customer-group tenancy (403 Forbidden on
+  another group's machine) rather than by scope. The WordPress MCP server on elementalmachines.com
+  publishes exactly one scope, "mcp", in its RFC 8414 metadata. No scopes/permissions reference page
+  exists anywhere in the provider's documentation.
+scope_count: 1
+schemes:
+- name: oauth2_password
+  surface: LabOps REST API
+  host: https://api.elementalmachines.io
+  source: openapi/elemental-machines-api-openapi.yml
+  flows:
+  - flow: password
+    tokenUrl: https://api.elementalmachines.io/oauth/token
+    scopes: {}
+  scope_count: 0
+  description: >-
+    Resource Owner Password Credentials grant taking username, password, client_id, client_secret
+    and grant_type. The provider's Swagger 1.2 declaration for /oauth/token declares no scope
+    parameter and the authorizations block of the resource listing is null, so no scope can be
+    requested and none is returned.
+  authorization_model: >-
+    Tenancy-scoped, not scope-scoped. GET /api/machines/{uuid}.json and the alert-log operation both
+    declare 403 Forbidden, which is the customer-group boundary being enforced. A single token
+    carries every permission that user has.
+  risk_note: >-
+    An access token with no scope, carried in a query string, on a password grant, with no published
+    expiry — every one of the four is a downgrade from current OAuth practice, and together they
+    mean a leaked log line is a full-permission credential.
+- name: mcp_oauth
+  surface: WordPress MCP server
+  host: https://elementalmachines.com
+  source: https://elementalmachines.com/.well-known/oauth-authorization-server
+  http_status: 200
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://elementalmachines.com/oauth/authorize
+    tokenUrl: https://elementalmachines.com/oauth/token
+    refreshUrl: https://elementalmachines.com/oauth/token
+    revocationUrl: https://elementalmachines.com/oauth/revoke
+    pkce: S256
+    scopes:
+      mcp: >-
+        The single scope advertised in scopes_supported by both the authorization-server metadata
+        and the protected-resource metadata. Its meaning is not documented anywhere; it gates
+        https://elementalmachines.com/wp-json/mcp/mcp-oauth-server.
+  scope_count: 1
+  token_endpoint_auth_methods_supported: [none]
+  client_id_metadata_document_supported: true
+  dynamic_client_registration: false
+docs: null
+docs_note: >-
+  No scopes, permissions or access-control reference page is published. Neither
+  https://api.elementalmachines.io/ (the Swagger UI console) nor the Freshdesk knowledge base
+  documents what a token can and cannot reach.
+cross_links:
+  authentication: authentication/elemental-machines-authentication.yml
+  mcp: mcp/elemental-machines-mcp.yml
+  well_known: well-known/elemental-machines-well-known.yml
