@@ -17,7 +17,7 @@ image: https://elementalmachines.com/wp-content/uploads/2024/11/connectivity-ale
 url: https://raw.githubusercontent.com/api-evangelist/elemental-machines/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-specificationVersion: '0.21'
+specificationVersion: '0.23'
 created: '2026-08-12'
 modified: '2026-08-12'
 tags:
