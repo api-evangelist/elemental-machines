@@ -1,0 +1,4907 @@
+{
+  "item": [
+    {
+      "id": "b94deb3f-fd3b-4fdd-bd96-83e61b318739",
+      "name": "Alert Logs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e97e42f-7581-4009-addd-63f5331e4886",
+          "name": "Get all alert logs for machine",
+          "request": {
+            "name": "Get all alert logs for machine",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                ":machine_uuid",
+                "alert_logs.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "1785278041",
+                  "description": "Ending epoch timestamp in seconds. Default value is current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "asc",
+                  "description": "Order of Alert Logs returned [asc is default, desc is required to return most recent Alert Logs]"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of Alert Logs to return [1 is minimum, 100 is default, 1200 is maximum]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_uuid",
+                  "description": "(Required) Machine uuid, mac_address, or serial_number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3caaa7c-2e98-4300-bed2-d6a4d74723c7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "alert_logs.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "050a7562-0fc0-4f10-912a-b84b5b3f86e1",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "alert_logs.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d72f9fa-5d76-4b9a-a068-70b47d6e0bf9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "alert_logs.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e0bcc66-b045-4b25-8b3d-04769a4f70fd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "alert_logs.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "66ce345d-f1b8-4e6d-a53d-ca1aa72f93db",
+      "name": "Alert Rules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a67f7b63-b69a-4fbb-8de2-eeb57aa7c14e",
+          "name": "Get all alert rules",
+          "request": {
+            "name": "Get all alert rules",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "alert_rules.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "managed_machine_uuid",
+                  "value": "<string>",
+                  "description": "Managed Machine UUID filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb816ec6-be59-46c4-803f-c0dcc1f648de",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "alert_rules.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "managed_machine_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5cb9c1e-b15c-40a3-959e-a52bfa6654be",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "alert_rules.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "managed_machine_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6acb0c1d-720f-4e49-a3ba-19971eb8d6c9",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "266ee2e1-86ae-466a-81bc-4c6b2f668303",
+          "name": "Get current group",
+          "request": {
+            "name": "Get current group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "customer_groups",
+                "my.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e52904a-eac1-4cc8-8b3b-abb2ebba9bd2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "customer_groups",
+                    "my.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f92c78ba-7513-46d7-bbf7-f1ee8a641f65",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "customer_groups",
+                    "my.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c503b162-2c5f-49d5-8ea2-4c09f8d8f1c1",
+          "name": "Get all groups",
+          "request": {
+            "name": "Get all groups",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "customer_groups.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e42d6d7-8066-4165-9ef4-3b37a6ac76b4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "customer_groups.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c90175ca-794a-4cd0-ab64-e5cf82d96471",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "customer_groups.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "532317ad-8463-4caf-898a-bc3dd4fddf5c",
+      "name": "Machines Sample Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bff301b-bcfb-41d4-afeb-61cfcb6cae8d",
+          "name": "Get sensor minimum, maximum, mean and median values",
+          "request": {
+            "name": "Get sensor minimum, maximum, mean and median values",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                ":machine_uuid",
+                "sample_stats.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Starting epoch timestamp in seconds. Blank will default to 24 hours ago."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<integer>",
+                  "description": "Ending epoch timestamp in seconds. Blank will default to current time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_uuid",
+                  "description": "(Required) Machine UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "beb97fd4-537b-458c-9697-567ebb72c430",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "sample_stats.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af1a0143-8dcc-4dcc-9e89-e2610cf19409",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "sample_stats.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087be139-ff42-4617-a723-e3e022da335e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "sample_stats.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e6324d95-6a0c-4328-894a-8914c1eb1f29",
+      "name": "Machines Samples",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c601b1b1-5d57-4928-884d-46df23ae07c0",
+          "name": "Get all machine samples for timestamp range",
+          "request": {
+            "name": "Get all machine samples for timestamp range",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                ":machine_uuid",
+                "samples.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "1785278041",
+                  "description": "Ending epoch timestamp in seconds. Default value is current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "asc",
+                  "description": "Order of samples returned [asc is default, desc is required to return most recent samples]"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of samples to return [1 is minimum, 100 is default, 1200 is maximum]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_uuid",
+                  "description": "(Required) Machine uuid, mac_address, or serial_number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d46211e-d824-4054-a31d-a62cfae83a87",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "samples.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d742fa4d-ca82-4b4c-9dc0-a486cc5bf32a",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "samples.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd8396d6-ad4f-46b5-82e5-350fb62afd75",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    ":machine_uuid",
+                    "samples.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_uuid",
+                      "description": "(Required) Machine uuid, mac_address, or serial_number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "14209e73-e4b5-4c8f-b4f6-8bd2a3281cf9",
+      "name": "Machines",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e68a366-b45a-4625-9a6e-d20925a00459",
+          "name": "Get all machines",
+          "request": {
+            "name": "Get all machines",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a0ad01b-e5fd-49f7-aeac-05a46e160a95",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5c207d9-036b-4471-ba2e-61832ee7e762",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c85f013d-b13b-4c12-b2c4-2fa182c2d1aa",
+          "name": "Get machine",
+          "request": {
+            "name": "Get machine",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                "{{uuid}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0760e510-e26c-4935-aaf1-863efeeafea4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "{{uuid}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1b4538b-2281-424c-952d-e68d356f344a",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "{{uuid}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e99cf8c-ce6d-492d-9154-73f4d20e868b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "{{uuid}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1e09df01-fe62-43ba-97b9-572f9ff38328",
+      "name": "Machines Usage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9408b228-10b7-4d75-97a2-7cc8afd6ca64",
+          "name": "Get aggregated utilization information for all machines under a customer group",
+          "request": {
+            "name": "Get aggregated utilization information for all machines under a customer group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                "usage",
+                "aggregated.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_group_uuid",
+                  "value": "<string>",
+                  "description": "(Required) Customer group UUID"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "(Required) Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<string>",
+                  "description": "Time zone string. Default to user time zone if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_work_hour",
+                  "value": "<integer>",
+                  "description": "Start work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_work_hour",
+                  "value": "<integer>",
+                  "description": "End work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "work_days[]",
+                  "value": "<string>",
+                  "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "work_days[]",
+                  "value": "<string>",
+                  "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "2026-06-28",
+                  "description": "Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31). If start_date is specified, end_date will become required."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "2026-07-28",
+                  "description": "End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07). If end_date is specified, start_date will become required."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "One of equipment_name, most_used [most_used is default]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "asc or desc [asc is default]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3d67b95-aaa6-4722-bf5b-b3dbf87f8a4b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "aggregated.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-06-28"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eb9138b-afe5-47bf-81d2-4c796979f0ab",
+              "name": "Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "aggregated.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-06-28"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36c3f797-6ee4-4748-8d8e-94e1be56d0c7",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "aggregated.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-06-28"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ff7260a-a4ba-4851-a2ae-2505f8494221",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "aggregated.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-06-28"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c31a6a5e-3d02-4d11-8a61-41ee12e1fc0b",
+          "name": "Get hourly utilization information for all machines under a customer group",
+          "request": {
+            "name": "Get hourly utilization information for all machines under a customer group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                "usage",
+                "hourly.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_group_uuid",
+                  "value": "<string>",
+                  "description": "(Required) Customer group UUID"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "(Required) Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_zone",
+                  "value": "<string>",
+                  "description": "Time zone string. Default to user time zone if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_work_hour",
+                  "value": "<integer>",
+                  "description": "Start work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_work_hour",
+                  "value": "<integer>",
+                  "description": "End work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "work_days[]",
+                  "value": "<string>",
+                  "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "work_days[]",
+                  "value": "<string>",
+                  "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "2026-07-27",
+                  "description": "Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31). If start_date is specified, end_date will become required."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "2026-07-28",
+                  "description": "End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07). If end_date is specified, start_date will become required."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "One of equipment_name, most_used [most_used is default]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "asc or desc [asc is default]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2444adc-6d20-4efb-9384-8585ef79324f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "hourly.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-27"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd7bdeb4-cc0d-4d01-81e7-6536c17da2e6",
+              "name": "Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "hourly.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-27"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0d3c860-7ef0-4694-83ca-67676fa19082",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "hourly.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-27"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21abf776-1ad9-4224-b2a4-e9ffb6a4d91b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "hourly.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "time_zone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_work_hour",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "work_days[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-27"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-28"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9d6be6a-e1e3-4cae-af5e-e995e1e51530",
+          "name": "Get the usage statuses for all machines under a customer group",
+          "request": {
+            "name": "Get the usage statuses for all machines under a customer group",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "machines",
+                "usage",
+                "status.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_group_uuid",
+                  "value": "<string>",
+                  "description": "(Required) Customer group UUID"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "(Required) Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_tags[]",
+                  "value": "<string>",
+                  "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "equipment_category_tags[]",
+                  "value": "<string>",
+                  "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_uuids[]",
+                  "value": "<string>",
+                  "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "One of equipment_name, eq_category, location, availability [availability is default]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "asc or desc [asc is default]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3cf1021-ce97-41fe-821b-74b21496f545",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "status.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07bc34fd-eb61-4d8f-965c-2a62126de08e",
+              "name": "Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "status.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae6b6f9c-c6f5-40a7-a087-04901e42c14d",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "status.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce3ef4f2-f1a7-4d5e-a4f1-861b6a8e8b9f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "machines",
+                    "usage",
+                    "status.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipment_category_tags[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_uuids[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2289cca5-6dfc-4caf-ba77-3da626254382",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4552e7bc-892a-45a3-9613-e63d892dcbe3",
+          "name": "Get access token",
+          "request": {
+            "name": "Get access token",
+            "description": {
+              "content": "An access token is needed for all subsequent authenticated requests. Contact us for Client ID/Secret.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "password",
+                  "description": "Grant type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "(Required) Email address"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) Password"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Client ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Client secret"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49123fe8-08ad-4875-8f68-db9f2efedde5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "password"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client ID",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b980a08f-1279-4868-9ed5-a6e04ede3c03",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "grant_type",
+                      "value": "password"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client ID",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2f473284-1072-4f52-b3eb-2aaf8c296f83",
+      "name": "Release Notes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86577275-dacf-4a10-a450-d621373999b1",
+          "name": "Change logs for releases",
+          "request": {
+            "name": "Change logs for releases",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "release_notes.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "(Required) Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "software",
+                  "value": "<string>",
+                  "description": "Software. Default is all software if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<string>",
+                  "description": "From date, e.g. 2022-09-30. Default is All Time if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<string>",
+                  "description": "To date, e.g. 2022-10-31. Default is All Time if not specified."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "63c8eda3-0a3a-4e79-a36a-efc13b132a98",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "release_notes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "software",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "349e3987-e590-409e-9542-09aa21b8f77e",
+              "name": "Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "release_notes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "software",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f417e105-990d-4c97-8bd0-8bfe923ac0ff",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "release_notes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "software",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2c146616-2684-4bdd-ab4a-5bf629514ec9",
+      "name": "Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fad5ba3-c218-404a-9311-8ec1813fbd4d",
+          "name": "Check server status",
+          "request": {
+            "name": "Check server status",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "status",
+                "check.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "411ae600-2843-4829-802c-70ee3fc9dd0c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "status",
+                    "check.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "728d4510-e005-4617-9bb9-fddde11ef4a8",
+      "name": "User Activities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aef3ff22-1807-44c2-9228-507b904cf774",
+          "name": "Get all user activities for your customer(s)",
+          "request": {
+            "name": "Get all user activities for your customer(s)",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "user_activities.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_group_uuid",
+                  "value": "<string>",
+                  "description": "UUID of Customer Group [empty = all]"
+                },
+                {
+                  "disabled": false,
+                  "key": "usage_type",
+                  "value": "<string>",
+                  "description": "Usage Type [dashboard, mobile, calendar; empty = all]"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_type",
+                  "value": "<string>",
+                  "description": "Action Type [view, change, login, all; empty/default = change]"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "1785278041",
+                  "description": "Ending epoch timestamp in seconds. Default value is current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "asc",
+                  "description": "Order of activities returned [asc is default, desc is required to return most recent activities]"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of activities to return [1 is minimum, 100 is default, 1200 is maximum]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a268cbd7-ed65-4e97-b3d3-9089560bfbba",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user_activities.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "usage_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80417980-ef67-4340-b660-e8fb9fabd0c8",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user_activities.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "usage_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ca3359e-80ef-4e62-8c56-6edb5499a00b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "user_activities.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_group_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "usage_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "1785278041"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "519c5f91-7419-4052-bd60-45fb866abbd0",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1af507dc-ab75-4fc0-928a-ce3f590d14be",
+          "name": "Get current user",
+          "request": {
+            "name": "Get current user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "users",
+                "my.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f176746-1fa3-4163-ad31-46062dd9f35c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    "my.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acd565ef-d5d6-4810-a650-ee6885d4e3b3",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    "my.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68eaa467-9881-41c1-807a-ebbc59e30e05",
+          "name": "Get all users",
+          "request": {
+            "name": "Get all users",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "users.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Access token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "14053f46-4da0-42aa-8ef5-ceb02554bacb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2187400c-f971-4f16-b5ce-2cfe52377960",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elementalmachines.io",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Machine UUID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "uuid"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09020876-9d5e-48a8-a23f-62979dbc57ec",
+    "name": "Elemental Machines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.\n\nContact Support:\n Email: help@elementalmachines.io",
+      "type": "text/plain"
+    }
+  }
+}

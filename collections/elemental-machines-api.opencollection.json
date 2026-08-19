@@ -1,0 +1,918 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Elemental Machines API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_token",
+      "value": "{{access_token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alert Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all alert logs for machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/:machine_uuid/alert_logs.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "machine_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Machine uuid, mac_address, or serial_number"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Ending epoch timestamp in seconds. Default value is current time."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order of Alert Logs returned [asc is default, desc is required to return most recent Alert Logs]"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of Alert Logs to return [1 is minimum, 100 is default, 1200 is maximum]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all alert logs for machine"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alert Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all alert rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/alert_rules.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "managed_machine_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Managed Machine UUID filter"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all alert rules"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/customer_groups/my.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get current group"
+        },
+        {
+          "info": {
+            "name": "Get all groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/customer_groups.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all groups"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machines Sample Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get sensor minimum, maximum, mean and median values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/:machine_uuid/sample_stats.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "machine_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Machine UUID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Starting epoch timestamp in seconds. Blank will default to 24 hours ago."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Ending epoch timestamp in seconds. Blank will default to current time."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get sensor minimum, maximum, mean and median values"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machines Samples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all machine samples for timestamp range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/:machine_uuid/samples.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "machine_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Machine uuid, mac_address, or serial_number"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Ending epoch timestamp in seconds. Default value is current time."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order of samples returned [asc is default, desc is required to return most recent samples]"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of samples to return [1 is minimum, 100 is default, 1200 is maximum]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all machine samples for timestamp range"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all machines"
+        },
+        {
+          "info": {
+            "name": "Get machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/:uuid.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Machine UUID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get machine"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machines Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get aggregated utilization information for all machines under a customer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/usage/aggregated.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "customer_group_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Customer group UUID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone string. Default to user time zone if not specified."
+              },
+              {
+                "name": "start_work_hour",
+                "value": "",
+                "type": "query",
+                "description": "Start work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+              },
+              {
+                "name": "end_work_hour",
+                "value": "",
+                "type": "query",
+                "description": "End work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+              },
+              {
+                "name": "work_days[]",
+                "value": "",
+                "type": "query",
+                "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31). If start_date is specified, end_date will become required."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07). If end_date is specified, start_date will become required."
+              },
+              {
+                "name": "location_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "equipment_category_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "machine_uuids[]",
+                "value": "",
+                "type": "query",
+                "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "One of equipment_name, most_used [most_used is default]"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "asc or desc [asc is default]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get aggregated utilization information for all machines under a customer group"
+        },
+        {
+          "info": {
+            "name": "Get hourly utilization information for all machines under a customer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/usage/hourly.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "customer_group_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Customer group UUID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Time zone string. Default to user time zone if not specified."
+              },
+              {
+                "name": "start_work_hour",
+                "value": "",
+                "type": "query",
+                "description": "Start work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+              },
+              {
+                "name": "end_work_hour",
+                "value": "",
+                "type": "query",
+                "description": "End work hour, integer 0~23. Default work hours to all 24 hours if not specified."
+              },
+              {
+                "name": "work_days[]",
+                "value": "",
+                "type": "query",
+                "description": "Work day (1~7 representing mon~sun). Enter single parameter text value in this form (e.g. 3). Default to all 7 days if not specified. For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date of the requested date range, default date range is last 30 days (e.g. 2022-05-31). If start_date is specified, end_date will become required."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date of the requested date range, default date range is last 30 days (e.g. 2022-06-07). If end_date is specified, start_date will become required."
+              },
+              {
+                "name": "location_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "equipment_category_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "machine_uuids[]",
+                "value": "",
+                "type": "query",
+                "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "One of equipment_name, most_used [most_used is default]"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "asc or desc [asc is default]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get hourly utilization information for all machines under a customer group"
+        },
+        {
+          "info": {
+            "name": "Get the usage statuses for all machines under a customer group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/machines/usage/status.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "customer_group_uuid",
+                "value": "",
+                "type": "query",
+                "description": "Customer group UUID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "location_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Location tag filter. Enter single parameter text value in this form (e.g. Lab 24).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "equipment_category_tags[]",
+                "value": "",
+                "type": "query",
+                "description": "Equipment category tag filter. Enter single parameter text value in this form (e.g. Centrifuge).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "machine_uuids[]",
+                "value": "",
+                "type": "query",
+                "description": "Machine UUID filter.  Enter single parameter text value in this form (e.g. 454d60e3-05c3-4356-872e-fbd480fe91fa).  For help on multiple values, contact Customer Support."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "One of equipment_name, eq_category, location, availability [availability is default]"
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "asc or desc [asc is default]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get the usage statuses for all machines under a customer group"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elementalmachines.io/oauth/token",
+            "params": [
+              {
+                "name": "grant_type",
+                "value": "",
+                "type": "query",
+                "description": "Grant type"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "An access token is needed for all subsequent authenticated requests. Contact us for Client ID/Secret."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Release Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Change logs for releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/release_notes.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "software",
+                "value": "",
+                "type": "query",
+                "description": "Software. Default is all software if not specified."
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date, e.g. 2022-09-30. Default is All Time if not specified."
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date, e.g. 2022-10-31. Default is All Time if not specified."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Change logs for releases"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check server status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/status/check.json"
+          },
+          "docs": "Check server status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Activities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all user activities for your customer(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/user_activities.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              },
+              {
+                "name": "customer_group_uuid",
+                "value": "",
+                "type": "query",
+                "description": "UUID of Customer Group [empty = all]"
+              },
+              {
+                "name": "usage_type",
+                "value": "",
+                "type": "query",
+                "description": "Usage Type [dashboard, mobile, calendar; empty = all]"
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "query",
+                "description": "Action Type [view, change, login, all; empty/default = change]"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Ending epoch timestamp in seconds. Default value is current time."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order of activities returned [asc is default, desc is required to return most recent activities]"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of activities to return [1 is minimum, 100 is default, 1200 is maximum]"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all user activities for your customer(s)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/users/my.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get current user"
+        },
+        {
+          "info": {
+            "name": "Get all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elementalmachines.io/api/users.json",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Access token"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "access_token",
+              "value": "{{access_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Get all users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
