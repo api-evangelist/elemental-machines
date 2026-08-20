@@ -23,6 +23,21 @@ modified: '2026-08-12'
 tags:
 - lab-operations
 - laboratory-monitoring
+- IoT
+- Sensors
+- Life Sciences
+- Cold Chain
+- Environmental Monitoring
+- equipment-utilization
+- Asset Management
+- Alerting
+- Compliance
+- GxP
+- Manufacturing
+- Time Series
+tags_raw:
+- lab-operations
+- laboratory-monitoring
 - iot
 - sensors
 - life-sciences
@@ -48,6 +63,15 @@ apis:
   humanURL: https://api.elementalmachines.io/
   baseURL: https://api.elementalmachines.io
   tags:
+  - lab-operations
+  - laboratory-monitoring
+  - IoT
+  - Sensors
+  - Time Series
+  - equipment-utilization
+  - Alerting
+  - Life Sciences
+  tags_raw:
   - lab-operations
   - laboratory-monitoring
   - iot
@@ -95,6 +119,9 @@ apis:
   humanURL: https://elementalmachines.com/
   baseURL: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
   tags:
+  - MCP
+  - agent-native
+  tags_raw:
   - mcp
   - agent-native
   properties:
