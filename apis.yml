@@ -51,71 +51,13 @@ tags_raw:
 - manufacturing
 - time-series
 apis:
-- name: Elemental Machines API
-  description: >-
-    Public REST API for the Elemental Machines LabOps platform. Read machines (sensor-connected
-    assets), their time-series samples and computed sample statistics, aggregated/hourly/status
-    utilization rollups for a customer group, alert logs and alert rules, users, user activities and
-    customer groups, plus dated platform release notes and an unauthenticated server status check.
-    Authentication is OAuth 2.0 Resource Owner Password Credentials against /oauth/token; the
-    resulting token is passed as an access_token query parameter on every call. The provider
-    publishes a Swagger 1.2 contract and a Swagger UI console at api.elementalmachines.io.
-  humanURL: https://api.elementalmachines.io/
-  baseURL: https://api.elementalmachines.io
-  tags:
-  - lab-operations
-  - laboratory-monitoring
-  - IoT
-  - Sensors
-  - Time Series
-  - equipment-utilization
-  - Alerting
-  - Life Sciences
-  tags_raw:
-  - lab-operations
-  - laboratory-monitoring
-  - iot
-  - sensors
-  - time-series
-  - equipment-utilization
-  - alerting
-  - life-sciences
-  properties:
-  - type: OpenAPI
-    url: openapi/elemental-machines-api-openapi.yml
-  - type: Swagger
-    url: https://api.elementalmachines.io/docs/api-docs.json
-  - type: APIReference
-    url: https://api.elementalmachines.io/
-  - type: Documentation
-    url: https://api.elementalmachines.io/
-  - type: Authentication
-    url: authentication/elemental-machines-authentication.yml
-  - type: OAuthScopes
-    url: scopes/elemental-machines-scopes.yml
-  - type: Conventions
-    url: conventions/elemental-machines-conventions.yml
-  - type: ErrorCatalog
-    url: errors/elemental-machines-problem-types.yml
-  - type: DataModel
-    url: data-model/elemental-machines-data-model.yml
-  - type: Overlay
-    url: overlays/elemental-machines-api-overlay.yaml
-  - type: RateLimits
-    url: rate-limits/elemental-machines-rate-limits.yml
-  - type: Plans
-    url: plans/elemental-machines-plans-pricing.yml
-  - type: ChangeLog
-    url: changelog/elemental-machines-changelog.yml
-  - type: AgentSkill
-    url: skills/_index.yml
 - name: Elemental Machines Website MCP Server
   description: >-
-    A remote Model Context Protocol server served from the elementalmachines.com WordPress host via
-    the WordPress MCP Adapter, advertised by /.well-known/oauth-protected-resource and
-    /.well-known/oauth-authorization-server. It is a website/content MCP surface, NOT an interface to
-    the LabOps API at api.elementalmachines.io. tools/list returns HTTP 401 with a Bearer
-    WWW-Authenticate challenge, so the tool schemas require authenticated introspection.
+    A remote Model Context Protocol server served from the elementalmachines.com WordPress host via the
+    WordPress MCP Adapter, advertised by /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server.
+    It is a website/content MCP surface, NOT an interface to the LabOps API at api.elementalmachines.io.
+    tools/list returns HTTP 401 with a Bearer WWW-Authenticate challenge, so the tool schemas require
+    authenticated introspection.
   humanURL: https://elementalmachines.com/
   baseURL: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
   tags:
@@ -133,7 +75,394 @@ apis:
     url: mcp/elemental-machines-tool-crosswalk.yml
   - type: WellKnown
     url: well-known/elemental-machines-well-known.yml
+- aid: elemental-machines:elemental-machines-alert-logs-api
+  name: Elemental Machines Alert Logs API
+  description: The Alert Logs API from Elemental Machines — 1 operation(s) for alert logs.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Alert Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-alert-logs-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-alert-rules-api
+  name: Elemental Machines Alert Rules API
+  description: The Alert Rules API from Elemental Machines — 1 operation(s) for alert rules.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Alert Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-alert-rules-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-authentication-api
+  name: Elemental Machines Authentication API
+  description: The Authentication API from Elemental Machines — 1 operation(s) for authentication.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-authentication-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-groups-api
+  name: Elemental Machines Groups API
+  description: The Groups API from Elemental Machines — 2 operation(s) for groups.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-groups-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-machines-api
+  name: Elemental Machines Machines API
+  description: The Machines API from Elemental Machines — 2 operation(s) for machines.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Machines
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-machines-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-machines-sample-stats-api
+  name: Elemental Machines Machines Sample Stats API
+  description: >-
+    The Machines Sample Stats API from Elemental Machines — 1 operation(s) for machines sample stats.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Machines Sample Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-machines-sample-stats-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-machines-samples-api
+  name: Elemental Machines Machines Samples API
+  description: The Machines Samples API from Elemental Machines — 1 operation(s) for machines samples.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Machines Samples
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-machines-samples-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-machines-usage-api
+  name: Elemental Machines Machines Usage API
+  description: The Machines Usage API from Elemental Machines — 3 operation(s) for machines usage.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Machines Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-machines-usage-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-release-notes-api
+  name: Elemental Machines Release Notes API
+  description: The Release Notes API from Elemental Machines — 1 operation(s) for release notes.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Release Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-release-notes-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-status-api
+  name: Elemental Machines Status API
+  description: The Status API from Elemental Machines — 1 operation(s) for status.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-status-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-user-activities-api
+  name: Elemental Machines User Activities API
+  description: The User Activities API from Elemental Machines — 1 operation(s) for user activities.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - User Activities
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-user-activities-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
+- aid: elemental-machines:elemental-machines-users-api
+  name: Elemental Machines Users API
+  description: The Users API from Elemental Machines — 2 operation(s) for users.
+  humanURL: https://api.elementalmachines.io/
+  baseURL: https://api.elementalmachines.io
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/elemental-machines-users-api-openapi.yml
+  - type: Swagger
+    url: https://api.elementalmachines.io/docs/api-docs.json
+  - type: APIReference
+    url: https://api.elementalmachines.io/
+  - type: Documentation
+    url: https://api.elementalmachines.io/
+  - type: Authentication
+    url: authentication/elemental-machines-authentication.yml
+  - type: OAuthScopes
+    url: scopes/elemental-machines-scopes.yml
+  - type: Conventions
+    url: conventions/elemental-machines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/elemental-machines-problem-types.yml
+  - type: DataModel
+    url: data-model/elemental-machines-data-model.yml
+  - type: RateLimits
+    url: rate-limits/elemental-machines-rate-limits.yml
+  - type: Plans
+    url: plans/elemental-machines-plans-pricing.yml
+  - type: ChangeLog
+    url: changelog/elemental-machines-changelog.yml
 common:
+- type: Overlay
+  url: overlays/elemental-machines-api-overlay.yaml
 - type: Website
   url: https://elementalmachines.com/
 - type: DeveloperPortal
