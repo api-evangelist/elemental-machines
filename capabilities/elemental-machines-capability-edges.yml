@@ -1,0 +1,25 @@
+slug: elemental-machines
+provider: Elemental Machines
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Pharmaceuticals & Life Sciences
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Machines Usage
+  spec_file: elemental-machines-machines-usage-api-openapi.yml
+  capability_id: BC-1040.20
+  capability_id_l1: BC-1040
+  capability_name: Asset Performance Management
+  confidence: 0.8
+  evidence: GET /api/machines/usage/aggregated.json  Get aggregated utilization information for all machines
+    under a customer group
+  reason: Operations return hourly and aggregated utilisation and usage status for monitored equipment,
+    which is precisely Asset Performance Management ('Asset KPIs, availability, utilisation').

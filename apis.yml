@@ -473,6 +473,9 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 common:
+- type: CapabilityMap
+  url: capabilities/elemental-machines-capability-edges.yml
+  name: Elemental Machines Business Capability Map
 - type: Overlay
   url: overlays/elemental-machines-api-overlay.yaml
 - type: Website
