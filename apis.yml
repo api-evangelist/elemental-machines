@@ -13,6 +13,18 @@ description: >-
   BMS and CMMS systems and data warehouses through the company's data-integration services. The
   company is ISO 9001:2015 certified, operates calibration to ISO 17025, and positions the platform
   as a 21 CFR Part 11 / ALCOA+ compliant recording system for GxP-regulated laboratories.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://elementalmachines.com/wp-content/uploads/2024/11/connectivity-alerts-video.jpeg
 url: https://raw.githubusercontent.com/api-evangelist/elemental-machines/refs/heads/main/apis.yml
 x-type: company
