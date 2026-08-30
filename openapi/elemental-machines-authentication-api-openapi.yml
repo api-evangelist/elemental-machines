@@ -1,0 +1,82 @@
+openapi: 3.2.0
+info:
+  title: Elemental Machines Authentication API
+  description: Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.
+  version: '1.0'
+  contact:
+    email: help@elementalmachines.io
+servers:
+- url: https://api.elementalmachines.io
+  description: Elemental Machines production API
+security:
+- access_token: []
+tags:
+- name: Authentication
+paths:
+  /oauth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Get access token
+      description: An access token is needed for all subsequent authenticated requests. Contact us for Client ID/Secret.
+      operationId: oauthToken
+      parameters:
+      - name: grant_type
+        in: query
+        description: Grant type
+        required: false
+        schema:
+          type: string
+          default: password
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Email address
+                  type: string
+                password:
+                  description: Password
+                  type: string
+                client_id:
+                  description: Client ID
+                  type: string
+                client_secret:
+                  description: Client secret
+                  type: string
+              required:
+              - username
+              - password
+              - client_id
+              - client_secret
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+      security: []
+components:
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: query
+      name: access_token
+      description: OAuth 2.0 access token passed as the access_token query parameter. Obtain one from POST /oauth/token (Resource Owner Password Credentials grant).
+    oauth2_password:
+      type: oauth2
+      description: Resource Owner Password Credentials grant. Documented in the provider's Swagger 1.2 declaration at /docs/api/oauth.json.
+      flows:
+        password:
+          tokenUrl: https://api.elementalmachines.io/oauth/token
+          scopes: {}

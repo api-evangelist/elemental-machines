@@ -1,0 +1,43 @@
+openapi: 3.2.0
+info:
+  title: Elemental Machines Status API
+  description: Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.
+  version: '1.0'
+  contact:
+    email: help@elementalmachines.io
+servers:
+- url: https://api.elementalmachines.io
+  description: Elemental Machines production API
+security:
+- access_token: []
+tags:
+- name: Status
+paths:
+  /api/status/check.json:
+    get:
+      tags:
+      - Status
+      summary: Check server status
+      operationId: statusCheck
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+      security: []
+components:
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: query
+      name: access_token
+      description: OAuth 2.0 access token passed as the access_token query parameter. Obtain one from POST /oauth/token (Resource Owner Password Credentials grant).
+    oauth2_password:
+      type: oauth2
+      description: Resource Owner Password Credentials grant. Documented in the provider's Swagger 1.2 declaration at /docs/api/oauth.json.
+      flows:
+        password:
+          tokenUrl: https://api.elementalmachines.io/oauth/token
+          scopes: {}

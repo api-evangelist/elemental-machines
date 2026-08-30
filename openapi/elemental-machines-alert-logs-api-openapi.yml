@@ -1,0 +1,102 @@
+openapi: 3.2.0
+info:
+  title: Elemental Machines Alert Logs API
+  description: Documentation for using Elemental Machines API. To start, get an access token using /oauth/token.
+  version: '1.0'
+  contact:
+    email: help@elementalmachines.io
+servers:
+- url: https://api.elementalmachines.io
+  description: Elemental Machines production API
+security:
+- access_token: []
+tags:
+- name: Alert Logs
+paths:
+  /api/machines/{machine_uuid}/alert_logs.json:
+    get:
+      tags:
+      - Alert Logs
+      summary: Get all alert logs for machine
+      operationId: alertLogsIndex
+      parameters:
+      - name: access_token
+        in: query
+        description: Access token
+        required: true
+        schema:
+          type: string
+      - name: machine_uuid
+        in: path
+        description: Machine uuid, mac_address, or serial_number
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Starting epoch timestamp in seconds [empty starts at 0, default is empty/0]
+        required: false
+        schema:
+          type: integer
+      - name: to
+        in: query
+        description: Ending epoch timestamp in seconds. Default value is current time.
+        required: false
+        schema:
+          type: integer
+          default: 1785278041
+      - name: order
+        in: query
+        description: Order of Alert Logs returned [asc is default, desc is required to return most recent Alert Logs]
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: limit
+        in: query
+        description: Number of Alert Logs to return [1 is minimum, 100 is default, 1200 is maximum]
+        required: false
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Not Authorized
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+      - access_token: []
+components:
+  securitySchemes:
+    access_token:
+      type: apiKey
+      in: query
+      name: access_token
+      description: OAuth 2.0 access token passed as the access_token query parameter. Obtain one from POST /oauth/token (Resource Owner Password Credentials grant).
+    oauth2_password:
+      type: oauth2
+      description: Resource Owner Password Credentials grant. Documented in the provider's Swagger 1.2 declaration at /docs/api/oauth.json.
+      flows:
+        password:
+          tokenUrl: https://api.elementalmachines.io/oauth/token
+          scopes: {}
