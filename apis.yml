@@ -35,18 +35,18 @@ modified: '2026-08-12'
 tags:
 - lab-operations
 - laboratory-monitoring
-- iot
-- sensors
-- life-sciences
-- cold-chain
-- environmental-monitoring
+- IoT
+- Sensors
+- Life Sciences
+- Cold Chain
+- Environmental Monitoring
 - equipment-utilization
-- asset-management
+- Asset Management
 - Alerting
 - Compliance
-- gxp
+- GxP
 - Manufacturing
-- time-series
+- Time Series
 tags_raw:
 - lab-operations
 - laboratory-monitoring
