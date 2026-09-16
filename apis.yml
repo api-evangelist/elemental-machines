@@ -1,18 +1,16 @@
 aid: elemental-machines
 name: Elemental Machines
-description: >-
-  Elemental Machines is a Cambridge, Massachusetts LabOps connectivity company that instruments
-  laboratories and manufacturing floors with IoT sensors and a vendor-agnostic cloud platform for
-  environmental monitoring, cold-storage and freezer health, equipment utilization, alerting,
-  calibration and compliance reporting across life sciences R&D, biomanufacturing, academia and
-  government facilities. The platform ingests sensor and third-party equipment data at 15-second
-  resolution and exposes it through a public REST API at api.elementalmachines.io covering machines,
-  machine samples and sample statistics, utilization (aggregated, hourly and status), alert logs,
-  alert rules, users, user activities, customer groups, release notes and a server status check,
-  authenticated with OAuth 2.0 access tokens. The same data is pushed into ELN/LIMS/SDMS, QMS, MES,
-  BMS and CMMS systems and data warehouses through the company's data-integration services. The
-  company is ISO 9001:2015 certified, operates calibration to ISO 17025, and positions the platform
-  as a 21 CFR Part 11 / ALCOA+ compliant recording system for GxP-regulated laboratories.
+description: Elemental Machines is a Cambridge, Massachusetts LabOps connectivity company that instruments
+  laboratories and manufacturing floors with IoT sensors and a vendor-agnostic cloud platform for environmental
+  monitoring, cold-storage and freezer health, equipment utilization, alerting, calibration and compliance
+  reporting across life sciences R&D, biomanufacturing, academia and government facilities. The platform
+  ingests sensor and third-party equipment data at 15-second resolution and exposes it through a public
+  REST API at api.elementalmachines.io covering machines, machine samples and sample statistics, utilization
+  (aggregated, hourly and status), alert logs, alert rules, users, user activities, customer groups, release
+  notes and a server status check, authenticated with OAuth 2.0 access tokens. The same data is pushed
+  into ELN/LIMS/SDMS, QMS, MES, BMS and CMMS systems and data warehouses through the company's data-integration
+  services. The company is ISO 9001:2015 certified, operates calibration to ISO 17025, and positions the
+  platform as a 21 CFR Part 11 / ALCOA+ compliant recording system for GxP-regulated laboratories.
 deliveryModel:
   model: saas
   open_source: false
@@ -46,7 +44,7 @@ x-type: company
 x-source: harvest:secondary-market
 specificationVersion: '0.23'
 created: '2026-08-12'
-modified: '2026-08-12'
+modified: '2026-09-16'
 tags:
 - lab-operations
 - laboratory-monitoring
@@ -79,9 +77,8 @@ tags_raw:
 - time-series
 apis:
 - name: Elemental Machines Website MCP Server
-  description: >-
-    A remote Model Context Protocol server served from the elementalmachines.com WordPress host via the
-    WordPress MCP Adapter, advertised by /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server.
+  description: A remote Model Context Protocol server served from the elementalmachines.com WordPress
+    host via the WordPress MCP Adapter, advertised by /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server.
     It is a website/content MCP surface, NOT an interface to the LabOps API at api.elementalmachines.io.
     tools/list returns HTTP 401 with a Bearer WWW-Authenticate challenge, so the tool schemas require
     authenticated introspection.
@@ -233,7 +230,7 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 - aid: elemental-machines:elemental-machines-machines-api
-  name: Elemental Machines Machines API
+  name: Elemental Machines API
   description: The Machines API from Elemental Machines — 2 operation(s) for machines.
   humanURL: https://api.elementalmachines.io/
   baseURL: https://api.elementalmachines.io
@@ -265,9 +262,9 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 - aid: elemental-machines:elemental-machines-machines-sample-stats-api
-  name: Elemental Machines Machines Sample Stats API
-  description: >-
-    The Machines Sample Stats API from Elemental Machines — 1 operation(s) for machines sample stats.
+  name: Elemental Machines Sample Stats API
+  description: The Machines Sample Stats API from Elemental Machines — 1 operation(s) for machines sample
+    stats.
   humanURL: https://api.elementalmachines.io/
   baseURL: https://api.elementalmachines.io
   tags:
@@ -298,7 +295,7 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 - aid: elemental-machines:elemental-machines-machines-samples-api
-  name: Elemental Machines Machines Samples API
+  name: Elemental Machines Samples API
   description: The Machines Samples API from Elemental Machines — 1 operation(s) for machines samples.
   humanURL: https://api.elementalmachines.io/
   baseURL: https://api.elementalmachines.io
@@ -330,7 +327,7 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 - aid: elemental-machines:elemental-machines-machines-usage-api
-  name: Elemental Machines Machines Usage API
+  name: Elemental Machines Usage API
   description: The Machines Usage API from Elemental Machines — 3 operation(s) for machines usage.
   humanURL: https://api.elementalmachines.io/
   baseURL: https://api.elementalmachines.io
