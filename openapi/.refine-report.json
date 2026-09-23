@@ -1,0 +1,42 @@
+{
+  "provider": "elemental-machines",
+  "sources": [
+    "_original/elemental-machines-api-openapi.yml"
+  ],
+  "outputs": [
+    "elemental-machines-alert-logs-api-openapi.yml",
+    "elemental-machines-alert-rules-api-openapi.yml",
+    "elemental-machines-authentication-api-openapi.yml",
+    "elemental-machines-groups-api-openapi.yml",
+    "elemental-machines-machines-api-openapi.yml",
+    "elemental-machines-machines-sample-stats-api-openapi.yml",
+    "elemental-machines-machines-samples-api-openapi.yml",
+    "elemental-machines-machines-usage-api-openapi.yml",
+    "elemental-machines-release-notes-api-openapi.yml",
+    "elemental-machines-status-api-openapi.yml",
+    "elemental-machines-user-activities-api-openapi.yml",
+    "elemental-machines-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "elemental-machines-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "elemental-machines-alert-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-alert-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-machines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-machines-sample-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-machines-samples-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-machines-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-release-notes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-user-activities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elemental-machines-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

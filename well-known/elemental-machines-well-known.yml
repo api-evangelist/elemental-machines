@@ -1,14 +1,12 @@
-generated: '2026-08-12'
+generated: '2026-09-19'
 method: probed
 source: live GET probes of /.well-known/* on every host named in apis.yml and openapi/ servers[]
-summary: >-
-  Two hosts were probed: elementalmachines.com (the WordPress marketing/content host) and
-  api.elementalmachines.io (the LabOps REST API host). The API host serves NOTHING under
-  /.well-known/ — every path returns the Rails 404 page. The marketing host DOES serve two real
-  RFC 8414 / RFC 9728 documents, emitted by the WordPress MCP Adapter plugin: an OAuth
-  authorization-server metadata document and an OAuth protected-resource metadata document that
-  names a remote MCP endpoint. No security.txt, no OpenID configuration, no api-catalog, no
-  ai-plugin.json, and no A2A agent card exists on either host.
+summary: 'Two hosts were probed: elementalmachines.com (the WordPress marketing/content host) and api.elementalmachines.io
+  (the LabOps REST API host). The API host serves NOTHING under /.well-known/ — every path returns the
+  Rails 404 page. The marketing host DOES serve two real RFC 8414 / RFC 9728 documents, emitted by the
+  WordPress MCP Adapter plugin: an OAuth authorization-server metadata document and an OAuth protected-resource
+  metadata document that names a remote MCP endpoint. No security.txt, no OpenID configuration, no api-catalog,
+  no ai-plugin.json, and no A2A agent card exists on either host.'
 hosts:
 - host: api.elementalmachines.io
   probes:
@@ -46,18 +44,15 @@ hosts:
     status: 200
     content_type: application/json; charset=UTF-8
     file: well-known/elemental-machines-oauth-authorization-server.json
-    note: >-
-      Real RFC 8414 authorization-server metadata. issuer https://elementalmachines.com,
-      authorization_code + refresh_token grants, PKCE S256, single scope "mcp",
-      token_endpoint_auth_methods_supported ["none"] (public clients),
-      client_id_metadata_document_supported true.
+    note: Real RFC 8414 authorization-server metadata. issuer https://elementalmachines.com, authorization_code
+      + refresh_token grants, PKCE S256, single scope "mcp", token_endpoint_auth_methods_supported ["none"]
+      (public clients), client_id_metadata_document_supported true.
   - path: /.well-known/oauth-protected-resource
     status: 200
     content_type: application/json; charset=UTF-8
     file: well-known/elemental-machines-oauth-protected-resource.json
-    note: >-
-      Real RFC 9728 protected-resource metadata naming
-      https://elementalmachines.com/wp-json/mcp/mcp-oauth-server as the protected MCP resource.
+    note: Real RFC 9728 protected-resource metadata naming https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
+      as the protected MCP resource.
   - path: /.well-known/api-catalog
     status: 404
     file: null
@@ -70,6 +65,16 @@ hosts:
   - path: /.well-known/agent.json
     status: 404
     file: null
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: elemental-machines-elementalmachines-oauth-protected-resource.json
+    bytes: 203
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: elemental-machines-elementalmachines-oauth-authorization-server.json
+    bytes: 575
+  path_echo_control: passed
 findings:
   security_txt: false
   openid_configuration: false
@@ -79,11 +84,26 @@ findings:
   ai_plugin: false
   agent_card: false
 pointer_emitted: true
-pointer_reason: >-
-  Two paths returned HTTP 200 carrying real, parseable JSON metadata documents (not SPA shells),
-  so a WellKnown pointer is warranted. No SecurityTxt pointer is emitted — no security.txt is
+pointer_reason: Two paths returned HTTP 200 carrying real, parseable JSON metadata documents (not SPA
+  shells), so a WellKnown pointer is warranted. No SecurityTxt pointer is emitted — no security.txt is
   served on either host.
 cross_links:
   mcp: mcp/elemental-machines-mcp.yml
   scopes: scopes/elemental-machines-scopes.yml
   authentication: authentication/elemental-machines-authentication.yml
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://elementalmachines.com
+    path: /.well-known/oauth-protected-resource
+    file: elemental-machines-elementalmachines-oauth-protected-resource.json
+  - host: https://elementalmachines.com
+    path: /.well-known/oauth-authorization-server
+    file: elemental-machines-elementalmachines-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
