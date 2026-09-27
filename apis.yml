@@ -86,7 +86,7 @@ apis:
   baseURL: https://elementalmachines.com/wp-json/mcp/mcp-oauth-server
   tags:
   - MCP
-  - agent-native
+  - Agent-Native
   tags_raw:
   - mcp
   - agent-native
@@ -99,6 +99,9 @@ apis:
     url: mcp/elemental-machines-tool-crosswalk.yml
   - type: WellKnown
     url: well-known/elemental-machines-well-known.yml
+  x-surface: platform-generated
+  x-platform: wordpress
+  x-platform-surface: mcp-plugin
 - aid: elemental-machines:elemental-machines-alert-logs-api
   name: Elemental Machines Alert Logs API
   description: The Alert Logs API from Elemental Machines — 1 operation(s) for alert logs.
