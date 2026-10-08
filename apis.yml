@@ -495,6 +495,10 @@ apis:
   - type: ChangeLog
     url: changelog/elemental-machines-changelog.yml
 common:
+- type: Plans
+  url: plans/elemental-machines-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/elemental-machines-rate-limits.yml
 - type: CapabilityMap
   url: capabilities/elemental-machines-capability-edges.yml
   name: Elemental Machines Business Capability Map
