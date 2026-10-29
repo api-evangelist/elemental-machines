@@ -64,5 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Elemental Machines is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Elemental Machines is a Cambridge, Massachusetts LabOps connectivity company that instruments laboratories and manufacturing floors with IoT sensors and a vendor-agnostic cloud platform for environmental monitoring, cold-storage and freezer health, equipment utilization, alerting, calibration and compliance reporting across life sciences R&D, biomanufacturing, academia and government facilities. The platform ingests sensor and third-party equipment data at 15-second resolution and exposes it through a public REST API at api.elementalmachines.io covering machines, machine samples and sample statistics, utilization (aggregated, hourly and status), alert logs, alert rules, users, user activities, customer groups, release notes and a server status check, authenticated with OAuth 2.0 access tokens. The same data is pushed into ELN/LIMS/SDMS, QMS, MES, BMS and CMMS systems and data warehouses through the company's data-integration services. The company is ISO 9001:2015 certified, operates calibration to ISO 17025, and positions the platform as a 21 CFR Part 11 / ALCOA+ compliant recording system for GxP-regulated laboratories.
+
+**Areas:** lab-operations · laboratory-monitoring · IoT · Sensors · Life Sciences · Cold Chain · Environmental Monitoring · equipment-utilization · Asset Management · Alerting · Compliance · GxP
+
+## Elemental Machines on APIs.io
+
+Everything profiled for Elemental Machines is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/elemental-machines/](https://apis.io/providers/elemental-machines/)** — or go straight to one of the APIs or properties below.
+
+### APIs (13)
+
+- [Elemental Machines Website MCP Server](https://apis.io/apis/elemental-machines/elemental-machines-website-mcp-server/) — A remote Model Context Protocol server served from the elementalmachines.com WordPress host via the WordPress MCP Adapter, advertised by…
+- [Elemental Machines Alert Logs API](https://apis.io/apis/elemental-machines/elemental-machines-alert-logs-api/) — The Alert Logs API from Elemental Machines — 1 operation(s) for alert logs.
+- [Elemental Machines Alert Rules API](https://apis.io/apis/elemental-machines/elemental-machines-alert-rules-api/) — The Alert Rules API from Elemental Machines — 1 operation(s) for alert rules.
+- [Elemental Machines Authentication API](https://apis.io/apis/elemental-machines/elemental-machines-authentication-api/) — The Authentication API from Elemental Machines — 1 operation(s) for authentication.
+- [Elemental Machines Groups API](https://apis.io/apis/elemental-machines/elemental-machines-groups-api/) — The Groups API from Elemental Machines — 2 operation(s) for groups.
+- [Elemental Machines API](https://apis.io/apis/elemental-machines/elemental-machines-machines-api/) — The Machines API from Elemental Machines — 2 operation(s) for machines.
+- [Elemental Machines Sample Stats API](https://apis.io/apis/elemental-machines/elemental-machines-machines-sample-stats-api/) — The Machines Sample Stats API from Elemental Machines — 1 operation(s) for machines sample stats.
+- [Elemental Machines Samples API](https://apis.io/apis/elemental-machines/elemental-machines-machines-samples-api/) — The Machines Samples API from Elemental Machines — 1 operation(s) for machines samples.
+- [Elemental Machines Usage API](https://apis.io/apis/elemental-machines/elemental-machines-machines-usage-api/) — The Machines Usage API from Elemental Machines — 3 operation(s) for machines usage.
+- [Elemental Machines Release Notes API](https://apis.io/apis/elemental-machines/elemental-machines-release-notes-api/) — The Release Notes API from Elemental Machines — 1 operation(s) for release notes.
+- [Elemental Machines Status API](https://apis.io/apis/elemental-machines/elemental-machines-status-api/) — The Status API from Elemental Machines — 1 operation(s) for status.
+- [Elemental Machines User Activities API](https://apis.io/apis/elemental-machines/elemental-machines-user-activities-api/) — The User Activities API from Elemental Machines — 1 operation(s) for user activities.
+- [Elemental Machines Users API](https://apis.io/apis/elemental-machines/elemental-machines-users-api/) — The Users API from Elemental Machines — 2 operation(s) for users.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [elemental-machines-mcp.yml](https://apis.io/servers/elemental-machines/elemental-machines-mcp-yml/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Elemental Machines API](https://apis.io/collections/elemental-machines/open-elemental-machines-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Elemental Machines Api Overlay](https://apis.io/overlays/elemental-machines/elemental-machines-api-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Elemental Machines Authentication](https://apis.io/security/elemental-machines/elemental-machines-authentication/)
+- [Elemental Machines Domain Security](https://apis.io/security/elemental-machines/elemental-machines-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Elemental Machines Scopes](https://apis.io/scopes/elemental-machines/elemental-machines-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Elemental Machines Plans Pricing](https://apis.io/plans/elemental-machines/elemental-machines-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Elemental Machines Rate Limits](https://apis.io/rate-limits/elemental-machines/elemental-machines-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://elementalmachines.com/)
+- [Documentation](https://api.elementalmachines.io/)
+- [API reference](https://api.elementalmachines.io/)
+- [Sign up](https://elementalmachines.com/request-a-trial/)
+- [Support](https://elementalmachines.com/support/)
+- [Blog](https://elementalmachines.com/about/news/)
+- [Terms of service](https://elementalmachines.com/terms-and-conditions/)
+- [Privacy policy](https://elementalmachines.com/privacy-policy/)
+- [GitHub](https://github.com/elementalmachines)
+- [Status](https://status.elementalmachines.io)
+
+## API Evangelist rating
+
+**Kin Score 45.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 41.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 42.1 |
+
+**Agent readiness 35.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 40.6** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/elemental-machines/](https://apis.io/providers/elemental-machines/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Elemental Machines: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/elemental-machines/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
